@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import { GoldButton, GreenButton, OutlineButton, SectionHeading, WhatsAppButton } from "@/components/ui";
+import { ExtrasCard, MenuCardPreview } from "@/components/MenuCard";
 import { interior1Photo } from "@/lib/photos/interior1";
 import { stagePhoto } from "@/lib/photos/stage";
 import {
@@ -116,23 +117,15 @@ export default function HomePage() {
           center
           kicker="Our Menu"
           title="Three wedding menus"
-          lead="Each menu below is shown exactly as supplied by the venue. A slash (/) separates the options listed on that line. Prices are not listed — please ask on WhatsApp."
+          lead="Each menu below is shown exactly as supplied by the venue."
         />
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {MENUS.map((menu) => (
-            <article key={menu.id} className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card">
-              <h3 className="font-serif text-2xl font-bold text-green">{menu.name}</h3>
-              <p className="mt-2 text-muted">
-                {menu.lines[0].en}, Chicken Biryani / Chicken Fried Rice, dessert, fresh salad, raita, bottle and
-                tandoori roti / roghni naan / manday.
-              </p>
-              <p className="mt-auto pt-4">
-                <Link href={`/menu#${menu.id}`} className="inline-block rounded-full border border-green px-4 py-2 text-sm font-bold text-green hover:bg-green hover:text-white">
-                  View {menu.name}
-                </Link>
-              </p>
-            </article>
+            <MenuCardPreview key={menu.id} menu={menu} />
           ))}
+        </div>
+        <div className="mt-5">
+          <ExtrasCard />
         </div>
         <p className="mt-7 flex flex-wrap justify-center gap-3">
           <GreenButton href="/menu">View Complete Menu</GreenButton>

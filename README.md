@@ -71,7 +71,7 @@ are shown. If prices or hall capacities/facilities are confirmed later,
 add them to `lib/site.ts` — do not guess them.
 
 ## Design
-Ivory / warm white, deep green, subtle gold. Fonts via `next/font/google`
+Ivory / warm white, deep green, subtle gold. Menu cards are Urdu-first (Urdu in Nastaliq, English underneath) with a smooth glassmorphism + claymorphism style (warm cream-gold glass, big soft radius, soft shadows, hover lift) defined as `.glass-card` in `app/globals.css` and shared via `components/MenuCard.tsx`. Fonts via `next/font/google`
 (Cormorant Garamond headings, Inter body, Noto Nastaliq Urdu for Urdu text)
 — self-hosted by Next.js, no render-blocking font requests. No heavy
 animations; images are lazy-loaded except the hero, which is prioritised.
