@@ -3,6 +3,10 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import { GreenButton, SectionHeading, WhatsAppButton } from "@/components/ui";
 import { LOCATION, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { interior2Photo } from "@/lib/photos/interior2";
+import { interior3Photo } from "@/lib/photos/interior3";
+import { logoLightPhoto } from "@/lib/photos/logoLight";
+import { stagePhoto } from "@/lib/photos/stage";
 
 export const metadata: Metadata = {
   title: "About Us — Rawayat Marquee & Marriage Hall, Kharian",
@@ -49,7 +53,7 @@ export default function AboutPage() {
         </div>
         <div>
           <Image
-            src="/images/logo-light.jpg"
+            src={logoLightPhoto}
             alt="Rawayat logo"
             width={1038}
             height={1024}
@@ -67,9 +71,9 @@ export default function AboutPage() {
             <hr className="mx-auto mt-4 h-[3px] w-16 border-0 bg-gold" />
           </div>
           <div className="mt-7 grid gap-5 sm:grid-cols-3">
-            <Image src="/images/interior-2.jpg" alt="Interior corridor with seating at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
-            <Image src="/images/interior-3.jpg" alt="Interior entrance doors at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
-            <Image src="/images/stage.jpg" alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+            <Image src={interior2Photo} alt="Interior corridor with seating at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+            <Image src={interior3Photo} alt="Interior entrance doors at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+            <Image src={stagePhoto} alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
           </div>
         </div>
       </section>

@@ -16,7 +16,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rawayat Marquee & Marriage Hall — Kharian",
     description: "A beautiful venue for your special celebrations in Kharian, Punjab, Pakistan.",
-    images: ["/images/cover.jpg"],
   },
 };
 

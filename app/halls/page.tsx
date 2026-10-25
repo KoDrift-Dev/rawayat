@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import { OutlineButton, WhatsAppButton } from "@/components/ui";
-import { HALLS, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL, hallWaLink } from "@/lib/site";
+import { PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { HALLS, hallWaLink } from "@/lib/halls";
+import { interior1Photo } from "@/lib/photos/interior1";
+import { interior2Photo } from "@/lib/photos/interior2";
+import { interior3Photo } from "@/lib/photos/interior3";
 
 export const metadata: Metadata = {
   title: "Our Halls — Rawayat Marquee & Marriage Hall, Kharian",
@@ -11,9 +15,9 @@ export const metadata: Metadata = {
 };
 
 const INTERIORS = [
-  { src: "/images/interior-1.jpg", alt: "Interior corridor at Rawayat Marquee & Marriage Hall" },
-  { src: "/images/interior-2.jpg", alt: "Interior corridor with seating at Rawayat Marquee & Marriage Hall" },
-  { src: "/images/interior-3.jpg", alt: "Interior entrance doors at Rawayat Marquee & Marriage Hall" },
+  { src: interior1Photo, alt: "Interior corridor at Rawayat Marquee & Marriage Hall" },
+  { src: interior2Photo, alt: "Interior corridor with seating at Rawayat Marquee & Marriage Hall" },
+  { src: interior3Photo, alt: "Interior entrance doors at Rawayat Marquee & Marriage Hall" },
 ];
 
 export default function HallsPage() {

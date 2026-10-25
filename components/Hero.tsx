@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { coverPhoto } from "@/lib/photos/cover";
 import type { ReactNode } from "react";
 
 export default function Hero({
@@ -15,7 +16,7 @@ export default function Hero({
   return (
     <section className="relative overflow-hidden bg-green-dark text-white">
       <Image
-        src="/images/cover.jpg"
+        src={coverPhoto}
         alt="Rawayat Marquee & Marriage Hall building at dusk"
         fill
         priority={tall}

@@ -36,15 +36,21 @@ is kept for reference in `legacy-static/` — it is not served by Next.js.
 - Floating WhatsApp button, bottom-right, on every page
 - Google Maps directions link (as supplied by the client)
 
-## Photos used (`public/images/`)
-Client-supplied:
-- `logo.png` — transparent logo (header + favicon)
-- `logo-light.jpg` — logo on ivory (About page)
-- `cover.jpg` — venue exterior at dusk (hero background, all pages)
-- `stage.jpg` — decorated wedding stage (Home welcome)
-- `main-hall.jpg` — large draped hall (Main Hall)
-- `hall-2.jpg` — blue-lit hall with purple seating (Hall 2)
-- `interior-1.jpg`, `interior-2.jpg`, `interior-3.jpg` — corridors / entrance
+## Photos — data URLs, not binary files
+GitHub's MCP snapshot push is text-only and rejects binary files, so the
+site does NOT load photos from `public/images/` at runtime. Instead, photos
+ship as data URLs in `lib/photos/` (one generated `.ts` file per photo,
+WebP quality 82; the transparent logo stays PNG). All components and pages
+import from there — there are no `/images/*` references left in the code.
+
+Source photos (the originals, for reference and regeneration only):
+`public/images/` — logo.png, logo-light.jpg, cover.jpg, stage.jpg,
+main-hall.jpg, hall-2.jpg, hall-3.jpg, marquee.jpg, interior-1/2/3.jpg.
+These are NOT pushed to GitHub and are NOT needed by the deployed site.
+
+To update a photo: replace the file in `public/images/` (same filename),
+run `python3 scripts/generate-photos.py`, rebuild, and push. The script
+regenerates `lib/photos/*.ts`.
 
 Representative images for now (NOT the venue's own photos — marked as such
 on the site, to be replaced):
@@ -52,8 +58,11 @@ on the site, to be replaced):
 - `marquee.jpg` — wedding marquee photo from the web
 
 To replace either: drop the venue photo in as `hall-3.jpg` / `marquee.jpg`
-(same filename) and delete the "Representative photo" notes in
-`app/page.tsx` and `app/halls/page.tsx`.
+in `public/images/`, regenerate with the script above, and delete the
+"Representative photo" notes in `app/page.tsx` and `app/halls/page.tsx`.
+
+`app/icon.png` (favicon source) is also binary and is not pushed; the
+deployed site simply has no custom favicon until one is added as SVG/text.
 
 ## Menu — no prices, nothing invented
 Menus are transcribed exactly as supplied (Urdu + English). A slash (/)

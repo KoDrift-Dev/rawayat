@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LOCATION, NAV, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { logoPhoto } from "@/lib/photos/logo";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 border-b border-line bg-ivory/95">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3.5">
           <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Rawayat Marquee and Marriage Hall — Home">
-            <Image src="/images/logo.png" alt="Rawayat logo" width={48} height={47} className="h-12 w-auto shrink-0" />
+            <Image src={logoPhoto} alt="Rawayat logo" width={48} height={47} className="h-12 w-auto shrink-0" />
             <span className="font-serif text-2xl leading-none font-bold text-green">
               Rawayat
               <small className="mt-0.5 block font-sans text-[0.65rem] font-bold tracking-[0.16em] text-gold-dark uppercase">

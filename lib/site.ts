@@ -17,55 +17,6 @@ export const WA_MENU = waLink(
   "Assalam-o-Alaikum! I would like to inquire about the wedding menu and packages at Rawayat Marquee & Marriage Hall.",
 );
 
-export type Hall = {
-  id: string;
-  name: string;
-  image: string;
-  alt: string;
-  blurb: string;
-  representative?: boolean;
-};
-
-export const HALLS: Hall[] = [
-  {
-    id: "main-hall",
-    name: "Main Hall",
-    image: "/images/main-hall.jpg",
-    alt: "Main Hall at Rawayat Marquee & Marriage Hall",
-    blurb: "The venue's main hall, with draped ceilings and lounge seating for your guests.",
-  },
-  {
-    id: "hall-2",
-    name: "Hall 2",
-    image: "/images/hall-2.jpg",
-    alt: "Hall 2 at Rawayat Marquee & Marriage Hall",
-    blurb: "A second hall at the venue, set up with lounge seating and floral arrangements.",
-  },
-  {
-    id: "hall-3",
-    name: "Hall 3",
-    image: "/images/hall-3.jpg",
-    alt: "Representative photo of a wedding hall",
-    blurb: "A third hall at the venue.",
-    representative: true,
-  },
-  {
-    id: "marquee",
-    name: "Marquee",
-    image: "/images/marquee.jpg",
-    alt: "Representative photo of a wedding marquee",
-    blurb: "The venue's marquee.",
-    representative: true,
-  },
-];
-
-export function hallWaLink(hall: Hall): string {
-  const label = hall.id === "marquee" ? "the Marquee" : hall.name;
-  return waLink(
-    `Assalam-o-Alaikum! I would like to inquire about ${label} at Rawayat Marquee & Marriage Hall.`,
-  );
-}
-
 export type MenuLine = { en: string; ur: string };
 export type Menu = { id: string; name: string; lines: MenuLine[] };
 

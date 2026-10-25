@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import { GoldButton, GreenButton, OutlineButton, SectionHeading, WhatsAppButton } from "@/components/ui";
+import { interior1Photo } from "@/lib/photos/interior1";
+import { stagePhoto } from "@/lib/photos/stage";
 import {
-  HALLS,
   LOCATION,
   MAPS_EMBED,
   MAPS_URL,
@@ -13,6 +14,7 @@ import {
   WA_GENERAL,
   WA_MENU,
 } from "@/lib/site";
+import { HALLS } from "@/lib/halls";
 
 function ContactBox() {
   return (
@@ -70,7 +72,7 @@ export default function HomePage() {
           </p>
         </div>
         <Image
-          src="/images/stage.jpg"
+          src={stagePhoto}
           alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall"
           width={960}
           height={1280}
@@ -141,7 +143,7 @@ export default function HomePage() {
       <section className="border-t border-line bg-cream py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-9 px-5 md:grid-cols-2">
           <Image
-            src="/images/interior-1.jpg"
+            src={interior1Photo}
             alt="Interior corridor at Rawayat Marquee & Marriage Hall"
             width={960}
             height={1280}
