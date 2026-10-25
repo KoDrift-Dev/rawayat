@@ -92,12 +92,19 @@ export default function HomePage() {
             {HALLS.map((hall) => (
               <article key={hall.id} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card">
                 <Image src={hall.image} alt={hall.alt} width={800} height={600} className="h-56 w-full object-cover" />
-                <div className="flex flex-1 flex-col gap-1.5 p-5">
-                  <h3 className="font-serif text-2xl font-bold text-green">{hall.name}</h3>
-                  <p className="text-muted">{hall.blurb}</p>
-                  {hall.representative ? <p className="text-sm text-muted">Representative photo for now.</p> : null}
-                  <p className="mt-auto pt-2">
-                    <Link href={`/halls#${hall.id}`} className="inline-block rounded-full border border-green px-4 py-2 text-sm font-bold text-green hover:bg-green hover:text-white">
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="flex flex-wrap gap-2">
+                    <span className="rounded-full bg-green-soft px-3 py-1 text-xs font-bold text-green">
+                      {hall.id === "marquee" ? "Marquee" : "Banquet Hall"}
+                    </span>
+                    <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">
+                      Indoor
+                    </span>
+                  </p>
+                  <h3 className="mt-3 font-serif text-2xl font-bold text-green">{hall.name}</h3>
+                  <p className="mt-1 text-sm text-muted">Rawayat Marquee &amp; Marriage Hall · Kharian, Punjab</p>
+                  <p className="mt-auto pt-4">
+                    <Link href={`/halls#${hall.id}`} className="block w-full rounded-full border border-green px-4 py-2.5 text-center text-sm font-bold text-green hover:bg-green hover:text-white">
                       View Details
                     </Link>
                   </p>
