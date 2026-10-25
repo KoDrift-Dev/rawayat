@@ -1,0 +1,93 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Hero from "@/components/Hero";
+import { OutlineButton, WhatsAppButton } from "@/components/ui";
+import { HALLS, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL, hallWaLink } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Our Halls — Rawayat Marquee & Marriage Hall, Kharian",
+  description:
+    "Main Hall, Hall 2, Hall 3 and Marquee at Rawayat Marquee & Marriage Hall, Kharian, Punjab, Pakistan. Enquire on WhatsApp +92 300 0441286.",
+};
+
+const INTERIORS = [
+  { src: "/images/interior-1.jpg", alt: "Interior corridor at Rawayat Marquee & Marriage Hall" },
+  { src: "/images/interior-2.jpg", alt: "Interior corridor with seating at Rawayat Marquee & Marriage Hall" },
+  { src: "/images/interior-3.jpg", alt: "Interior entrance doors at Rawayat Marquee & Marriage Hall" },
+];
+
+export default function HallsPage() {
+  return (
+    <>
+      <Hero kicker="Our Halls" title={<>Four spaces for<br />your celebration</>}>
+        <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">
+          Main Hall, Hall 2, Hall 3 and a Marquee — all at Rawayat Marquee &amp; Marriage Hall, Kharian.
+        </p>
+      </Hero>
+
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <p className="max-w-2xl text-lg text-muted">
+          No capacities, facilities or prices are stated here, because none were supplied — each hall is shown by name
+          and photograph, with a direct WhatsApp enquiry button. Hall 3 and Marquee photos are representative images for
+          now, clearly marked below, and will be replaced with the venue&apos;s own photos when available.
+        </p>
+
+        <div className="mt-8">
+          {HALLS.map((hall, i) => (
+            <div
+              key={hall.id}
+              id={hall.id}
+              className="grid scroll-mt-28 items-center gap-8 border-b border-line py-9 last:border-b-0 md:grid-cols-2"
+            >
+              <Image
+                src={hall.image}
+                alt={hall.alt}
+                width={900}
+                height={675}
+                className={`h-[360px] w-full rounded-2xl object-cover max-md:h-[260px] ${i % 2 === 1 ? "md:order-2" : ""}`}
+              />
+              <div>
+                <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">
+                  Hall 0{i + 1}
+                </p>
+                <h2 className="font-serif text-4xl font-bold text-green">{hall.name}</h2>
+                <hr className="mt-4 h-[3px] w-16 border-0 bg-gold" />
+                <p className="mt-4 text-muted">{hall.blurb}</p>
+                {hall.representative ? (
+                  <p className="mt-2 text-sm text-muted">
+                    Representative photo for now — the venue&apos;s own {hall.name.toLowerCase()} photo will replace it
+                    when supplied.
+                  </p>
+                ) : null}
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  <WhatsAppButton href={hallWaLink(hall)} small>
+                    Inquire About {hall.id === "marquee" ? "the Marquee" : hall.name}
+                  </WhatsAppButton>
+                  <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-cream py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="text-center">
+            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Inside the Venue</p>
+            <h2 className="font-serif text-4xl font-bold text-green">Interiors</h2>
+            <hr className="mx-auto mt-4 h-[3px] w-16 border-0 bg-gold" />
+          </div>
+          <div className="mt-7 grid gap-5 sm:grid-cols-3">
+            {INTERIORS.map((img) => (
+              <Image key={img.src} src={img.src} alt={img.alt} width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+            ))}
+          </div>
+          <p className="mt-6 text-center">
+            <WhatsAppButton href={WA_GENERAL}>Ask About Any Hall on WhatsApp</WhatsAppButton>
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}
