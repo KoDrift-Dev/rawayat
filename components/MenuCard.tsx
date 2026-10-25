@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { WhatsAppButton } from "@/components/ui";
-import { EXTRA_DISHES, WA_MENU, menuWaLink, type Menu } from "@/lib/site";
+import { EXTRA_DISHES, type Menu } from "@/lib/site";
 
 function CardHeader({ menu }: { menu: Menu }) {
   return (
@@ -28,11 +27,6 @@ export function MenuCardFull({ menu }: { menu: Menu }) {
           </li>
         ))}
       </ul>
-      <p className="mt-6">
-        <WhatsAppButton href={menuWaLink(menu)} small>
-          Inquire About {menu.name}
-        </WhatsAppButton>
-      </p>
     </article>
   );
 }
@@ -84,11 +78,6 @@ export function ExtrasCard() {
           </li>
         ))}
       </ul>
-      <p className="mt-6">
-        <WhatsAppButton href={WA_MENU} small>
-          Ask About Extra Dishes
-        </WhatsAppButton>
-      </p>
     </article>
   );
 }

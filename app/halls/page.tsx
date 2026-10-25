@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/Hero";
-import { OutlineButton, WhatsAppButton } from "@/components/ui";
-import { PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
-import { HALLS, hallWaLink } from "@/lib/halls";
+import { OutlineButton } from "@/components/ui";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { HALLS } from "@/lib/halls";
 import { interior1Photo } from "@/lib/photos/interior1";
 import { interior2Photo } from "@/lib/photos/interior2";
 import { interior3Photo } from "@/lib/photos/interior3";
@@ -64,9 +64,6 @@ export default function HallsPage() {
                   </p>
                 ) : null}
                 <div className="mt-5 flex flex-wrap gap-2.5">
-                  <WhatsAppButton href={hallWaLink(hall)} small>
-                    Inquire About {hall.id === "marquee" ? "the Marquee" : hall.name}
-                  </WhatsAppButton>
                   <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
                 </div>
               </div>
@@ -87,9 +84,6 @@ export default function HallsPage() {
               <Image key={img.src} src={img.src} alt={img.alt} width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
             ))}
           </div>
-          <p className="mt-6 text-center">
-            <WhatsAppButton href={WA_GENERAL}>Ask About Any Hall on WhatsApp</WhatsAppButton>
-          </p>
         </div>
       </section>
     </>

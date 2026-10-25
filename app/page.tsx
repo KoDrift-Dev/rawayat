@@ -13,7 +13,6 @@ import {
   PHONE_DISPLAY,
   PHONE_TEL,
   WA_GENERAL,
-  WA_MENU,
 } from "@/lib/site";
 import { HALLS } from "@/lib/halls";
 
@@ -117,7 +116,7 @@ export default function HomePage() {
           center
           kicker="Our Menu"
           title="Three wedding menus"
-          lead="Each menu below is shown exactly as supplied by the venue."
+          lead="Three wedding menus, plus extra dishes, for your celebration."
         />
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {MENUS.map((menu) => (
@@ -127,9 +126,8 @@ export default function HomePage() {
         <div className="mt-5">
           <ExtrasCard />
         </div>
-        <p className="mt-7 flex flex-wrap justify-center gap-3">
+        <p className="mt-7 text-center">
           <GreenButton href="/menu">View Complete Menu</GreenButton>
-          <WhatsAppButton href={WA_MENU}>Ask About the Menu</WhatsAppButton>
         </p>
       </section>
 

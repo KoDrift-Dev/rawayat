@@ -15,7 +15,7 @@ export default function MenuPage() {
     <>
       <Hero kicker="Wedding Menu" title={<>Our menu &amp; packages</>}>
         <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">
-          Three wedding menus, plus extra dishes — exactly as supplied by the venue.
+          Three wedding menus, plus extra dishes, for your celebration.
         </p>
       </Hero>
 

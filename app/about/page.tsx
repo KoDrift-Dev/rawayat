@@ -59,7 +59,6 @@ export default function AboutPage() {
             height={1024}
             className="max-h-[420px] w-full rounded-2xl bg-cream object-contain p-5"
           />
-          <p className="mt-2 text-center text-sm text-muted">The venue&apos;s logo, as supplied.</p>
         </div>
       </section>
 
