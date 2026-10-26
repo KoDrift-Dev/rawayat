@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { LOCATION, NAV, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { NAV, WA_GENERAL } from "@/lib/site";
 import { logoPhoto } from "@/lib/photos/logo";
 
 export default function Header() {
@@ -12,19 +12,6 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <>
-      <div className="bg-green-dark text-[#e9e2cf] text-sm">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2 px-5 py-2">
-          <span>{LOCATION}</span>
-          <span>
-            Call:{" "}
-            <a href={PHONE_TEL} className="font-semibold text-white hover:underline">
-              {PHONE_DISPLAY}
-            </a>
-          </span>
-        </div>
-      </div>
-
       <header className="sticky top-0 z-50 border-b border-line bg-ivory/95">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3.5">
           <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Rawayat Marquee and Marriage Hall — Home">
@@ -76,6 +63,5 @@ export default function Header() {
           </nav>
         </div>
       </header>
-    </>
   );
 }

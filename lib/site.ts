@@ -13,6 +13,9 @@ export function waLink(message: string): string {
 export const WA_GENERAL = waLink(
   "Assalam-o-Alaikum! I would like to inquire about Rawayat Marquee & Marriage Hall.",
 );
+export const WA_DATE = waLink(
+  "Assalam-o-Alaikum! I would like to check date availability at Rawayat Marquee & Marriage Hall.",
+);
 export const WA_MENU = waLink(
   "Assalam-o-Alaikum! I would like to inquire about the wedding menu and packages at Rawayat Marquee & Marriage Hall.",
 );

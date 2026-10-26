@@ -12,9 +12,11 @@ import {
   MENUS,
   PHONE_DISPLAY,
   PHONE_TEL,
+  WA_DATE,
   WA_GENERAL,
 } from "@/lib/site";
 import { HALLS } from "@/lib/halls";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 function ContactBox() {
   return (
@@ -48,11 +50,30 @@ function ContactBox() {
 export default function HomePage() {
   return (
     <>
-      <Hero kicker={LOCATION} tall title={<>Rawayat Marquee &amp;<br />Marriage Hall</>}>
-        <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">A beautiful venue for your special celebrations.</p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <GoldButton href="/halls">Explore Our Halls</GoldButton>
-          <WhatsAppButton href={WA_GENERAL}>Contact on WhatsApp</WhatsAppButton>
+      <Hero
+        tall
+        center
+        title={
+          <>
+            Rawayat Marquee
+            <br />
+            <span className="text-gold italic">Kharian</span>
+          </>
+        }
+      >
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <GoldButton href={WA_DATE}>
+            <span className="inline-flex items-center gap-2">
+              <WhatsAppIcon className="h-5 w-5" />
+              Check Date on WhatsApp
+            </span>
+          </GoldButton>
+          <a
+            href="/menu"
+            className="inline-block w-full max-w-xs rounded-full border-2 border-white bg-transparent px-5 py-3 text-center font-bold text-white hover:bg-white hover:text-green-dark sm:w-auto sm:max-w-none"
+          >
+            Explore Menus
+          </a>
         </div>
       </Hero>
 
