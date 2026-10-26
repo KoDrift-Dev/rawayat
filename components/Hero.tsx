@@ -27,7 +27,7 @@ export default function Hero({
       />
       <div
         className={`absolute inset-0 ${
-          center ? "bg-[#0a2c21]/65" : "bg-gradient-to-r from-[#0a2c21]/95 via-[#0a2c21]/70 to-[#0a2c21]/35"
+          center ? "bg-black/60" : "bg-gradient-to-r from-black/90 via-black/65 to-black/30"
         }`}
       />
       <div className={`relative mx-auto max-w-6xl px-5 ${center ? "text-center" : ""} ${tall ? "py-20 sm:py-24" : "py-14"}`}>

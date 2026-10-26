@@ -61,7 +61,7 @@ export default function HomePage() {
         </p>
         <p className="mt-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm backdrop-blur">
-            <span className="tracking-[0.12em] text-gold">★★★★☆</span> 4.2 rating · 14 reviews
+            <span className="tracking-[0.12em] text-gold">★★★★★</span> 4.9 rating · 144 reviews
           </span>
         </p>
         <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -245,7 +245,7 @@ export default function HomePage() {
             Guests <em className={EM}>love</em> Rawayat
           </SectionTitle>
           <p className="mt-3 text-center text-muted">
-            <span className="tracking-[0.12em] text-gold">★★★★☆</span> 4.2 rating · 14 reviews
+            <span className="tracking-[0.12em] text-gold">★★★★★</span> 4.9 rating · 144 reviews
           </p>
           <div className="mx-auto mt-7 max-w-2xl rounded-2xl border border-line bg-white p-6 shadow-card">
             <p className="text-lg text-muted italic">
