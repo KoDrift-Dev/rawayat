@@ -11,10 +11,9 @@ export type Hall = {
   alt: string;
   blurb: string;
   representative?: boolean;
-  // DUMMY — capacities and starting prices below are placeholders added 2026-10-26
+  // DUMMY — capacities below are placeholders added 2026-10-26
   // (never supplied by the client). Replace with real figures before quoting customers.
   guests: string;
-  priceFrom: string;
   badge?: string;
   amenities: string[];
 };
@@ -27,7 +26,6 @@ export const HALLS: Hall[] = [
     alt: "Main Hall at Rawayat Marquee & Marriage Hall",
     blurb: "The venue's main hall, with draped ceilings and lounge seating for your guests.",
     guests: "800",
-    priceFrom: "Rs. 200,000",
     badge: "Most Loved",
     amenities: ["Valet Parking", "Power Backup", "Bridal Suite", "In-house Catering", "Central AC", "Prayer Area"],
   },
@@ -38,7 +36,6 @@ export const HALLS: Hall[] = [
     alt: "Hall 2 at Rawayat Marquee & Marriage Hall",
     blurb: "A second hall at the venue, set up with lounge seating and floral arrangements.",
     guests: "500",
-    priceFrom: "Rs. 150,000",
     amenities: ["Central AC", "In-house Catering", "Power Backup", "Valet Parking"],
   },
   {
@@ -49,7 +46,6 @@ export const HALLS: Hall[] = [
     blurb: "A third hall at the venue.",
     representative: true,
     guests: "300",
-    priceFrom: "Rs. 100,000",
     amenities: ["Central AC", "In-house Catering", "Power Backup"],
   },
   {
@@ -60,7 +56,6 @@ export const HALLS: Hall[] = [
     blurb: "The venue's marquee.",
     representative: true,
     guests: "1,200",
-    priceFrom: "Rs. 300,000",
     badge: "Evening Favourite",
     amenities: ["Fairy-Light Decor", "Open-Air Seating", "Valet Parking", "Power Backup"],
   },

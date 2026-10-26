@@ -29,7 +29,7 @@ export default function AboutPage() {
             lead="Rawayat Marquee & Marriage Hall is a wedding venue in Kharian, Punjab, Pakistan. It offers four spaces — Main Hall, Hall 2, Hall 3 and a Marquee — and three wedding menus, with extra dishes available."
           />
           <p className="mt-4 text-muted">
-            For dates, availability, hall details and menu prices, please contact the venue directly. This website is
+            For dates, availability and hall details, please contact the venue directly. This website is
             for information and enquiries only — it does not take online bookings.
           </p>
           <div className="mt-6 rounded-2xl border border-line bg-white p-6 shadow-card">

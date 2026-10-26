@@ -31,8 +31,8 @@ export default function HallsPage() {
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <p className="max-w-2xl text-lg text-muted">
-          Four spaces for weddings and family celebrations — Main Hall, Hall 2, Hall 3 and a Marquee. Starting prices
-          are shown for each hall; confirm your date, guest count and final price on WhatsApp or by telephone. Hall 3
+          Four spaces for weddings and family celebrations — Main Hall, Hall 2, Hall 3 and a Marquee. Confirm your
+          date and guest count on WhatsApp or by telephone. Hall 3
           and Marquee photos are representative images for now, clearly marked below, and will be replaced with the
           venue&apos;s own photos when available.
         </p>
@@ -63,7 +63,6 @@ export default function HallsPage() {
                     {hall.guests} guests
                   </span>
                   <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">Indoor</span>
-                  <span className="font-bold text-green">Hall from {hall.priceFrom}</span>
                 </p>
                 <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
                   {hall.amenities.map((a) => (

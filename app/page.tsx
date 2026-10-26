@@ -112,7 +112,6 @@ export default function HomePage() {
                   <span className="rounded-full border border-green/30 px-3 py-1 text-sm font-bold text-green">
                     {hall.guests} guests
                   </span>
-                  <span className="font-bold text-green">Hall from {hall.priceFrom}</span>
                 </p>
                 <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
                   {hall.amenities.map((a) => (
@@ -200,7 +199,7 @@ export default function HomePage() {
             </p>
             <div className="mt-6 grid grid-cols-2 gap-3">
               {[
-                ["01", "Transparent Rates", "No hidden charges — everything is clear from day one."],
+                ["01", "Clear Details", "Everything about your event is clear from day one."],
                 ["02", "In-house Catering", "The venue's own kitchen — fresh, hot food, served on time."],
                 ["03", "Trained Staff", "Hospitality the team is known for, at every event."],
                 ["04", "Prime Location", "Easy to reach in Kharian, with spacious parking."],

@@ -17,7 +17,7 @@ export default function InquiryForm() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Assalam-o-Alaikum! I would like to inquire about Rawayat Marquee & Marriage Hall.\n\nName: ${name}\nPhone: ${phone}\nEvent: ${type}\nDate: ${date}\nGuests: ${guests}\n\nPlease confirm availability and rates.`;
+    const msg = `Assalam-o-Alaikum! I would like to inquire about Rawayat Marquee & Marriage Hall.\n\nName: ${name}\nPhone: ${phone}\nEvent: ${type}\nDate: ${date}\nGuests: ${guests}\n\nPlease confirm availability.`;
     window.open(waLink(msg), "_blank");
   };
 
