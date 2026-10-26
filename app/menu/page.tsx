@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export default function MenuPage() {
   return (
     <>
-      <Hero kicker="Wedding Menu" title={<>Our menu &amp; packages</>}>
-        <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">
+      <Hero center kicker="Wedding Menu" title={<>Our menu &amp; packages</>}>
+        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">
           Three wedding menus, plus extra dishes, for your celebration.
         </p>
       </Hero>

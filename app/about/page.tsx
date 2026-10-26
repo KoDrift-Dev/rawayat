@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import { GreenButton, SectionHeading, WhatsAppButton } from "@/components/ui";
-import { LOCATION, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { HOURS, LOCATION, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
 import { interior2Photo } from "@/lib/photos/interior2";
 import { interior3Photo } from "@/lib/photos/interior3";
 import { logoLightPhoto } from "@/lib/photos/logoLight";
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Hero kicker="About Us" title={<>Rawayat Marquee &amp;<br />Marriage Hall</>}>
-        <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">A wedding venue in Kharian, Punjab, Pakistan.</p>
+      <Hero center kicker="About Us" title={<>Rawayat Marquee &amp;<br />Marriage Hall</>}>
+        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">A wedding venue in Kharian, Punjab, Pakistan.</p>
       </Hero>
 
       <section className="mx-auto grid max-w-6xl items-center gap-9 px-5 py-16 md:grid-cols-2">
@@ -36,6 +36,8 @@ export default function AboutPage() {
             <dl>
               <dt className="font-bold text-green">Location</dt>
               <dd className="mb-3 text-muted">{LOCATION}</dd>
+              <dt className="font-bold text-green">Visiting Hours</dt>
+              <dd className="mb-3 text-muted">{HOURS}</dd>
               <dt className="font-bold text-green">Telephone</dt>
               <dd>
                 <a href={PHONE_TEL} className="font-semibold text-ink hover:underline">

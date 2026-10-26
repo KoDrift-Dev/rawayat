@@ -23,17 +23,18 @@ const INTERIORS = [
 export default function HallsPage() {
   return (
     <>
-      <Hero kicker="Our Halls" title={<>Four spaces for<br />your celebration</>}>
-        <p className="mt-4 max-w-xl text-lg text-[#dfe8df]">
+      <Hero center kicker="Our Halls" title={<>Four spaces for<br />your celebration</>}>
+        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">
           Main Hall, Hall 2, Hall 3 and a Marquee — all at Rawayat Marquee &amp; Marriage Hall, Kharian.
         </p>
       </Hero>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <p className="max-w-2xl text-lg text-muted">
-          No capacities, facilities or prices are stated here, because none were supplied — each hall is shown by name
-          and photograph, with a direct WhatsApp enquiry button. Hall 3 and Marquee photos are representative images for
-          now, clearly marked below, and will be replaced with the venue&apos;s own photos when available.
+          Four spaces for weddings and family celebrations — Main Hall, Hall 2, Hall 3 and a Marquee. Starting prices
+          are shown for each hall; confirm your date, guest count and final price on WhatsApp or by telephone. Hall 3
+          and Marquee photos are representative images for now, clearly marked below, and will be replaced with the
+          venue&apos;s own photos when available.
         </p>
 
         <div className="mt-8">
@@ -57,6 +58,21 @@ export default function HallsPage() {
                 <h2 className="font-serif text-4xl font-bold text-green">{hall.name}</h2>
                 <hr className="mt-4 h-[3px] w-16 border-0 bg-gold" />
                 <p className="mt-4 text-muted">{hall.blurb}</p>
+                <p className="mt-3 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-green/30 px-3 py-1 text-sm font-bold text-green">
+                    {hall.guests} guests
+                  </span>
+                  <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">Indoor</span>
+                  <span className="font-bold text-green">Hall from {hall.priceFrom}</span>
+                </p>
+                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  {hall.amenities.map((a) => (
+                    <li key={a} className="text-sm text-muted">
+                      <span className="mr-1.5 font-bold text-gold-dark">✓</span>
+                      {a}
+                    </li>
+                  ))}
+                </ul>
                 {hall.representative ? (
                   <p className="mt-2 text-sm text-muted">
                     Representative photo for now — the venue&apos;s own {hall.name.toLowerCase()} photo will replace it

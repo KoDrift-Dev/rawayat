@@ -16,7 +16,7 @@ export default function Hero({
   center?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden bg-green-dark text-white">
+    <section className="relative overflow-hidden rounded-b-[32px] bg-green-dark text-white">
       <Image
         src={coverPhoto}
         alt="Rawayat Marquee & Marriage Hall building at dusk"
