@@ -3,10 +3,10 @@ import Link from "next/link";
 import { EXTRA_DISHES, type Menu, type MenuLine } from "@/lib/site";
 
 /**
- * Card heading: main heading = "Menu 1", sub heading = the first item
- * (e.g. "Mutton Qorma / Mutton Karahi"), each styled per its type.
+ * Preview card heading (home showcase): main heading = "Menu 1",
+ * sub heading = the first item (e.g. "Mutton Qorma / Mutton Karahi").
  */
-function MainHeading({ menu, big = false }: { menu: Menu; big?: boolean }) {
+function PreviewHeading({ menu, big = false }: { menu: Menu; big?: boolean }) {
   const first = menu.lines[0];
   return (
     <div>
@@ -19,39 +19,11 @@ function MainHeading({ menu, big = false }: { menu: Menu; big?: boolean }) {
   );
 }
 
-/** Full menu card for /menu — every item with its photo, Urdu first. */
-export function MenuCardFull({ menu }: { menu: Menu }) {
-  return (
-    <article id={menu.id} className="glass-card scroll-mt-28 p-6 sm:p-7">
-      <MainHeading menu={menu} big />
-      <ul className="mt-5 grid gap-4">
-        {menu.lines.map((line) => (
-          <li key={line.en} className="flex items-center gap-4 border-b border-dashed border-line pb-4 last:border-b-0 last:pb-0">
-            <Image
-              src={line.img}
-              alt={line.en}
-              width={320}
-              height={320}
-              className="h-20 w-20 shrink-0 rounded-2xl object-cover"
-            />
-            <div className="min-w-0">
-              <p dir="rtl" lang="ur" className="text-right font-urdu text-xl leading-9 text-green">
-                {line.ur}
-              </p>
-              <p className="mt-0.5 text-sm text-muted">{line.en}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
 /** Showcase preview card for the home page — headings + plain item list, no photos. */
 export function MenuCardPreview({ menu }: { menu: Menu }) {
   return (
     <article className="glass-card flex flex-col p-5 sm:p-6">
-      <MainHeading menu={menu} />
+      <PreviewHeading menu={menu} />
       <ul className="mt-3">
         {menu.lines.slice(1).map((line: MenuLine) => (
           <li
@@ -77,7 +49,102 @@ export function MenuCardPreview({ menu }: { menu: Menu }) {
   );
 }
 
-/** Extras card — every extra dish with its photo. */
+/** Dish card with photo — ShadiSphere menus-page style (no prices). */
+function DishCard({ line }: { line: MenuLine }) {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+      <Image src={line.img} alt={line.en} width={640} height={360} className="aspect-video w-full object-cover" />
+      <div className="p-4">
+        <h4 className="font-semibold text-green">{line.en}</h4>
+        <p dir="rtl" lang="ur" className="mt-1 text-right font-urdu text-lg leading-8 text-muted">
+          {line.ur}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+/** Package-style card for the /menu page top — photo, title, tagline, dish list. */
+export function MenuPackageCard({ menu }: { menu: Menu }) {
+  const first = menu.lines[0];
+  const rest = menu.lines.slice(1);
+  return (
+    <article className="flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-card">
+      <Image src={first.img} alt={first.en} width={800} height={450} className="aspect-video w-full object-cover" />
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <p className="mb-1 text-xs font-bold tracking-[0.22em] text-gold-dark uppercase">{menu.name}</p>
+        <h3 className="font-serif text-2xl font-bold text-green">{first.en}</h3>
+        <p dir="rtl" lang="ur" className="text-right font-urdu text-lg leading-8 text-muted">
+          {first.ur}
+        </p>
+        <ul className="mt-4">
+          {rest.slice(0, 5).map((l) => (
+            <li key={l.en} className="border-b border-dashed border-line py-1.5 text-sm text-ink last:border-b-0">
+              <span className="mr-1.5 font-bold text-gold-dark">✓</span>
+              {l.en}
+            </li>
+          ))}
+          {rest.length > 5 && (
+            <li className="py-1.5 text-sm font-semibold text-gold-dark">+{rest.length - 5} more dishes</li>
+          )}
+        </ul>
+        <p className="mt-auto pt-5">
+          <Link
+            href={`/menu#${menu.id}`}
+            className="block w-full rounded-full border border-green px-4 py-2.5 text-center text-sm font-bold text-green hover:bg-green hover:text-white"
+          >
+            View Full Menu
+          </Link>
+        </p>
+      </div>
+    </article>
+  );
+}
+
+/** Full dish catalog for one menu on the /menu page. */
+export function MenuCatalogSection({ menu }: { menu: Menu }) {
+  const first = menu.lines[0];
+  return (
+    <section id={menu.id} className="mb-14 scroll-mt-28">
+      <div className="mb-1 flex items-center gap-4">
+        <h3 className="font-serif text-3xl font-bold text-green">{menu.name}</h3>
+        <span aria-hidden="true" className="h-[3px] flex-1 rounded bg-gold/60" />
+        <span className="text-sm text-muted">{menu.lines.length} items</span>
+      </div>
+      <p className="mb-5 text-muted">
+        {first.en} <span dir="rtl" lang="ur" className="font-urdu text-gold-dark">{first.ur}</span>
+      </p>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {menu.lines.map((line) => (
+          <DishCard key={line.en} line={line} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** Extra dishes catalog for the /menu page. */
+export function ExtrasCatalog() {
+  return (
+    <section className="mb-4">
+      <div className="mb-1 flex items-center gap-4">
+        <h3 className="font-serif text-3xl font-bold text-green">Extra Dishes</h3>
+        <span aria-hidden="true" className="h-[3px] flex-1 rounded bg-gold/60" />
+        <span className="text-sm text-muted">{EXTRA_DISHES.length} items</span>
+      </div>
+      <p dir="rtl" lang="ur" className="mb-5 text-right font-urdu text-xl leading-9 text-gold-dark">
+        اضافی ڈشز
+      </p>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {EXTRA_DISHES.map((dish) => (
+          <DishCard key={dish.en} line={dish} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** Extras card for the home page — every extra dish with its photo. */
 export function ExtrasCard() {
   return (
     <article className="glass-card p-6 sm:p-8">

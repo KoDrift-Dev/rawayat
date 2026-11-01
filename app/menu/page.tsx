@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import { ExtrasCard, MenuCardFull } from "@/components/MenuCard";
+import { ExtrasCatalog, MenuCatalogSection, MenuPackageCard } from "@/components/MenuCard";
 import { OutlineButton } from "@/components/ui";
 import { MENUS, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
@@ -30,17 +30,20 @@ export default function MenuPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-12">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {MENUS.map((menu) => (
-            <MenuCardFull key={menu.id} menu={menu} />
+            <MenuPackageCard key={menu.id} menu={menu} />
           ))}
         </div>
       </section>
 
       <section className="border-t border-line bg-cream py-16">
         <div className="mx-auto max-w-6xl px-5">
-          <ExtrasCard />
-          <p className="mt-6 text-center">
+          {MENUS.map((menu) => (
+            <MenuCatalogSection key={menu.id} menu={menu} />
+          ))}
+          <ExtrasCatalog />
+          <p className="mt-10 text-center">
             <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
           </p>
         </div>
