@@ -70,8 +70,8 @@ export default function HomePage() {
                     {hall.badge}
                   </span>
                 )}
-                <div className="card-img">
-                  <Img src={hall.image} alt={hall.alt} width={900} height={560} />
+                <div className="card-img compact">
+                  <Img src={hall.image} alt={hall.alt} width={900} height={450} />
                 </div>
                 <div className="card-body">
                   <div className="chip-row" style={{ marginBottom: 10 }}>
@@ -83,7 +83,7 @@ export default function HomePage() {
                   <p style={{ marginBottom: 10 }}>
                     <Badge>{hall.guests} guests</Badge>
                   </p>
-                  <ul className="why-list small" style={{ marginBottom: 16 }}>
+                  <ul className="why-list small cols-2" style={{ marginBottom: 16 }}>
                     {hall.amenities.slice(0, 6).map((a) => (
                       <li key={a}>{a}</li>
                     ))}

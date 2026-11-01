@@ -6,7 +6,7 @@ import { Badge, Img, Reveal, StaggerItem } from "@/components/ui";
 export function DishCard({ line, index = 0 }: { line: MenuLine; index?: number }) {
   return (
     <StaggerItem index={index}>
-      <article className="card h-full">
+      <article className="card dish-card h-full">
         <div className="card-img">
           <Img src={line.img} alt={line.en} width={640} height={400} />
         </div>
@@ -88,7 +88,7 @@ export function MenuPreviewCard({ menu, index = 0 }: { menu: Menu; index?: numbe
                   fontSize: 13.5,
                 }}
               >
-                <span title={line.en} className="truncate">{line.en}</span>
+                <span title={line.en} className="truncate" style={{ minWidth: 0 }}>{line.en}</span>
                 <span dir="rtl" lang="ur" className="font-urdu" style={{ flexShrink: 0, textAlign: "right", fontSize: 14, color: "var(--color-ink-400)", lineHeight: 1.9 }}>
                   {line.ur}
                 </span>

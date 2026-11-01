@@ -56,7 +56,7 @@ export default function HallsPage() {
                   </span>
                 )}
                 <div className="grid grid-2" style={{ gap: 0, alignItems: "stretch" }}>
-                  <div className="card-img" style={{ aspectRatio: "auto", minHeight: 260, borderRadius: 0 }}>
+                  <div className="card-img" style={{ aspectRatio: "auto", minHeight: 200, borderRadius: 0 }}>
                     <Img src={hall.image} alt={hall.alt} width={900} height={620} />
                   </div>
                   <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -71,7 +71,7 @@ export default function HallsPage() {
                       <Badge tone="gold">Indoor</Badge>
                       <Badge>{hall.id === "marquee" ? "Marquee" : "Banquet Hall"}</Badge>
                     </div>
-                    <ul className="why-list small" style={{ marginBottom: 14, gridTemplateColumns: "1fr 1fr" }}>
+                    <ul className="why-list small cols-2" style={{ marginBottom: 14 }}>
                       {hall.amenities.map((a) => (
                         <li key={a}>{a}</li>
                       ))}

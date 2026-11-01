@@ -1,2 +1,3 @@
-// Logo served as a real file (public/images/logo.png) — not a data URL.
-export const logoPhoto = "/images/logo.png";
+// Hosted on Cloudinary (res.cloudinary.com) — fast CDN, cached.
+// (The public/images/*.webp copies in this repo are corrupt base64-text from a bad upload — unused.)
+export const logoPhoto = "https://res.cloudinary.com/duo55lhwh/image/upload/v1793525599/rawayat/zo9awupm6elzjx6pdvsi.png";
