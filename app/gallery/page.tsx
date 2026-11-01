@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Hero from "@/components/Hero";
-import { GoldButton, OutlineButton } from "@/components/ui";
+import { Btn, Img, Reveal, SectionHead, StaggerItem } from "@/components/ui";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { WA_DATE } from "@/lib/site";
 import { coverPhoto } from "@/lib/photos/cover";
@@ -36,43 +35,54 @@ export default function GalleryPage() {
   return (
     <>
       <Hero
-        center
-        kicker="Gallery"
-        title={
-          <>
-            Rawayat <span className="text-gold italic">Gallery</span>
-          </>
-        }
-      >
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">
-          Halls, stage and interiors at a glance — imagine your day here.
-        </p>
-      </Hero>
+        eyebrow="Gallery"
+        title={<>Rawayat <em>Gallery</em></>}
+        sub="Halls, stage and interiors at a glance — imagine your day here."
+      />
 
-      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-          {PHOTOS.map((g) => (
-            <div key={g.label} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-              <Image src={g.src} alt={g.label} width={800} height={600} className="h-36 w-full object-cover sm:h-60" />
-              <p className="px-4 py-2.5 text-sm font-semibold text-green">{g.label}</p>
-            </div>
+      <section className="wrap section-tight">
+        <SectionHead
+          center
+          eyebrow="Photos"
+          title="The venue in pictures"
+          lead="Nine photos — halls, stage and interiors."
+        />
+        <div className="grid grid-3">
+          {PHOTOS.map((g, i) => (
+            <StaggerItem key={g.label} index={i}>
+              <article className="card h-full">
+                <div className="card-img">
+                  <Img src={g.src} alt={g.label} width={800} height={500} />
+                </div>
+                <div className="card-body" style={{ padding: "12px 18px" }}>
+                  <p className="small" style={{ margin: 0, fontWeight: 600, color: "var(--color-pine-700)" }}>
+                    {g.label}
+                  </p>
+                </div>
+              </article>
+            </StaggerItem>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <h2 className="font-serif text-3xl font-bold text-green">Pasand aya?</h2>
-          <p className="mx-auto mt-2 max-w-md text-muted">
-            Apni date ki availability abhi check karein — bilkul free.
-          </p>
-          <p className="mt-5 flex flex-wrap justify-center gap-3">
-            <GoldButton href={WA_DATE}>
-              <span className="inline-flex items-center gap-2">
-                <WhatsAppIcon className="h-5 w-5" />
-                Check My Date
-              </span>
-            </GoldButton>
-            <OutlineButton href="/menu">Explore Menus</OutlineButton>
-          </p>
-        </div>
+
+        <Reveal>
+          <div className="promo-strip" style={{ marginTop: 44 }}>
+            <div style={{ position: "relative", zIndex: 1, flex: 1 }}>
+              <h3>Pasand aya?</h3>
+              <p>Apni date ki availability abhi check karein — bilkul free.</p>
+            </div>
+            <div style={{ position: "relative", zIndex: 1, display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Btn href={WA_DATE} external variant="gold">
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                  <WhatsAppIcon className="h-5 w-5" />
+                  Check My Date
+                </span>
+              </Btn>
+              <Btn to="/menu" variant="outline-light">
+                Explore Menus
+              </Btn>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </>
   );

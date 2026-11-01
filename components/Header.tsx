@@ -6,104 +6,93 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV, WA_GENERAL } from "@/lib/site";
 import { logoPhoto } from "@/lib/photos/logo";
+import { Btn } from "@/components/ui";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  const linkCls = (href: string) =>
-    `rounded-lg px-3.5 py-2 text-[0.95rem] font-semibold ${
-      pathname === href ? "bg-green-soft text-green" : "text-ink hover:bg-green-soft hover:text-green"
-    }`;
-
-  const mobileLinkCls = (href: string) =>
-    `block rounded-xl px-4 py-3 font-semibold ${
-      pathname === href ? "bg-green-soft text-green" : "text-ink hover:bg-green-soft hover:text-green"
-    }`;
+  const close = () => setOpen(false);
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-line bg-ivory/95">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 sm:gap-4 sm:px-5 sm:py-3.5">
-          <Link href="/" className="flex min-w-0 items-center gap-2.5" aria-label="Rawayat Marquee and Marriage Hall — Home">
-            <Image src={logoPhoto} alt="Rawayat logo" width={48} height={47} className="h-10 w-auto shrink-0 sm:h-12" />
-            <span className="font-serif text-xl leading-none font-bold text-green sm:text-2xl">
-              Rawayat
-              <small className="mt-0.5 block font-sans text-[0.6rem] font-bold tracking-[0.16em] text-gold-dark uppercase sm:text-[0.65rem]">
-                Marquee &amp; Marriage Hall
-              </small>
+      <header className="nav-shell">
+        <div className="wrap nav-inner">
+          <Link href="/" className="brand" aria-label="Rawayat Marquee and Marriage Hall — Home">
+            <Image src={logoPhoto} alt="Rawayat logo" width={44} height={43} className="h-10 w-auto shrink-0" />
+            <span className="brand-name">
+              Rawayat <span>Marquee</span>
             </span>
           </Link>
-
+          <div className="nav-center">
+            <nav className="nav-pill" aria-label="Primary">
+              {NAV.map((item) => (
+                <Link key={item.href} href={item.href} className={pathname === item.href ? "active" : ""}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <span className="hidden md:inline">
+            <Btn href={WA_GENERAL} external variant="primary" size="sm">
+              WhatsApp Us
+            </Btn>
+          </span>
           <button
             type="button"
-            className="ml-auto rounded-lg border border-line px-3 py-2 text-xl text-green md:hidden"
+            className="nav-toggle"
             aria-expanded={open}
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
             ☰
           </button>
-
-          <nav aria-label="Main navigation" className="ml-auto hidden items-center gap-1.5 md:flex">
-            {NAV.map((item) => (
-              <Link key={item.href} href={item.href} className={linkCls(item.href)}>
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href={WA_GENERAL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-[#1f9d55] px-4 py-2 text-sm font-bold text-white hover:bg-[#178344]"
-            >
-              WhatsApp Us
-            </a>
-          </nav>
         </div>
       </header>
 
-      {/* Mobile side drawer — slides over the screen with a dimmed backdrop */}
-      <div className={`fixed inset-0 z-[60] md:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+      {/* mobile side drawer */}
+      <div className={`nav-drawer-veil${open ? " open" : ""}`} onClick={close} aria-hidden={!open} />
+      <aside className={`nav-drawer${open ? " open" : ""}`} role="dialog" aria-label="Site menu">
         <div
-          onClick={() => setOpen(false)}
-          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
-        />
-        <aside
-          className={`absolute top-0 right-0 flex h-full w-72 max-w-[85vw] flex-col bg-ivory shadow-2xl transition-transform duration-300 ${
-            open ? "translate-x-0" : "translate-x-full"
-          }`}
-          role="dialog"
-          aria-label="Site menu"
+          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: 16, borderBottom: "1px solid rgba(198,161,91,.25)" }}
         >
-          <div className="flex items-center justify-between border-b border-line p-4">
-            <span className="font-serif text-xl font-bold text-green">Menu</span>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-              className="rounded-lg border border-line px-3 py-1.5 text-lg text-green"
+          <span className="brand-name" style={{ fontSize: 18 }}>
+            Rawayat <span>Marquee</span>
+          </span>
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close menu"
+            style={{
+              border: "1px solid var(--color-cream-300)",
+              borderRadius: 10,
+              padding: "6px 12px",
+              fontSize: 18,
+              color: "var(--color-pine-700)",
+              background: "transparent",
+              cursor: "pointer",
+            }}
+          >
+            ✕
+          </button>
+        </div>
+        <nav style={{ display: "flex", flexDirection: "column", gap: 4, padding: 16, overflowY: "auto" }} aria-label="Mobile">
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={close}
+              className={`nav-link${pathname === item.href ? " active" : ""}`}
             >
-              ✕
-            </button>
-          </div>
-          <nav className="flex flex-col gap-1 overflow-y-auto p-4" aria-label="Mobile navigation">
-            {NAV.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className={mobileLinkCls(item.href)}>
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href={WA_GENERAL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 rounded-full bg-[#1f9d55] px-4 py-3 text-center font-bold text-white hover:bg-[#178344]"
-            >
+              {item.label}
+            </Link>
+          ))}
+          <div style={{ marginTop: 12 }}>
+            <Btn href={WA_GENERAL} external variant="primary" block onClick={close}>
               WhatsApp Us
-            </a>
-          </nav>
-        </aside>
-      </div>
+            </Btn>
+          </div>
+        </nav>
+      </aside>
     </>
   );
 }

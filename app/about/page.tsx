@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Hero from "@/components/Hero";
-import { GreenButton, SectionHeading, WhatsAppButton } from "@/components/ui";
+import { Btn, Img, Reveal, SectionHead, StaggerItem } from "@/components/ui";
 import { HOURS, LOCATION, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
 import { interior2Photo } from "@/lib/photos/interior2";
 import { interior3Photo } from "@/lib/photos/interior3";
@@ -17,64 +16,74 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Hero center kicker="About Us" title={<>Rawayat Marquee &amp;<br />Marriage Hall</>}>
-        <p className="mx-auto mt-3 max-w-xl text-base text-[#dfe8df] sm:text-lg">A wedding venue in Kharian, Punjab, Pakistan.</p>
-      </Hero>
+      <Hero
+        eyebrow="About Us"
+        title={<>Rawayat Marquee &amp; <em>Marriage Hall</em></>}
+        sub="A wedding venue in Kharian, Punjab, Pakistan."
+      />
 
-      <section className="mx-auto grid max-w-6xl items-center gap-6 px-5 py-10 sm:gap-9 sm:py-16 md:grid-cols-2">
-        <div>
-          <SectionHeading
-            kicker="About Us"
-            title="A venue for your special celebrations"
-            lead="Rawayat Marquee & Marriage Hall is a wedding venue in Kharian, Punjab, Pakistan. It offers four spaces — Main Hall, Hall 2, Hall 3 and a Marquee — and three wedding menus, with extra dishes available."
-          />
-          <p className="mt-4 text-muted">
-            For dates, availability and hall details, please contact the venue directly. This website is
-            for information and enquiries only — it does not take online bookings.
-          </p>
-          <div className="mt-6 rounded-2xl border border-line bg-white p-6 shadow-card">
-            <dl>
-              <dt className="font-bold text-green">Location</dt>
-              <dd className="mb-3 text-muted">{LOCATION}</dd>
-              <dt className="font-bold text-green">Visiting Hours</dt>
-              <dd className="mb-3 text-muted">{HOURS}</dd>
-              <dt className="font-bold text-green">Telephone</dt>
-              <dd>
-                <a href={PHONE_TEL} className="font-semibold text-ink hover:underline">
-                  {PHONE_DISPLAY}
-                </a>
-              </dd>
-            </dl>
-            <p className="mt-5 flex flex-wrap gap-2.5">
-              <WhatsAppButton href={WA_GENERAL} small>
-                WhatsApp Us
-              </WhatsAppButton>
-              <GreenButton href={MAPS_URL}>Get Directions</GreenButton>
-            </p>
-          </div>
-        </div>
-        <div>
-          <Image
-            src={logoLightPhoto}
-            alt="Rawayat logo"
-            width={1038}
-            height={1024}
-            className="max-h-[420px] w-full rounded-2xl bg-cream object-contain p-5"
-          />
+      <section className="wrap section">
+        <div className="grid grid-2" style={{ alignItems: "center" }}>
+          <Reveal>
+            <div>
+              <SectionHead
+                eyebrow="About Us"
+                title="A venue for your special celebrations"
+                lead="Rawayat Marquee & Marriage Hall is a wedding venue in Kharian, Punjab, Pakistan. It offers four spaces — Main Hall, Hall 2, Hall 3 and a Marquee — and three wedding menus, with extra dishes available."
+              />
+              <p className="muted">
+                For dates, availability and hall details, please contact the venue directly. This website is
+                for information and enquiries only — it does not take online bookings.
+              </p>
+              <article className="card" style={{ marginTop: 20 }}>
+                <div className="card-body">
+                  <p className="small"><strong>Location</strong><br /><span className="muted">{LOCATION}</span></p>
+                  <p className="small"><strong>Visiting Hours</strong><br /><span className="muted">{HOURS}</span></p>
+                  <p className="small" style={{ marginBottom: 14 }}>
+                    <strong>Telephone</strong><br />
+                    <a href={PHONE_TEL} style={{ fontWeight: 700, color: "var(--color-pine-700)" }}>
+                      {PHONE_DISPLAY}
+                    </a>
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                    <Btn href={WA_GENERAL} external variant="primary" size="sm">
+                      WhatsApp Us
+                    </Btn>
+                    <Btn href={MAPS_URL} external variant="gold" size="sm">
+                      Get Directions
+                    </Btn>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <article className="card">
+              <div className="card-img" style={{ aspectRatio: "1/1", background: "var(--color-cream-200)" }}>
+                <Img src={logoLightPhoto} alt="Rawayat logo" width={800} height={800} />
+              </div>
+            </article>
+          </Reveal>
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-10 sm:py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="text-center">
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Inside the Venue</p>
-            <h2 className="font-serif text-3xl font-bold text-green sm:text-4xl">Interiors</h2>
-            <hr className="mx-auto mt-4 h-[3px] w-16 border-0 bg-gold" />
-          </div>
-          <div className="mt-7 grid gap-5 sm:grid-cols-3">
-            <Image src={interior2Photo} alt="Interior corridor with seating at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
-            <Image src={interior3Photo} alt="Interior entrance doors at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
-            <Image src={stagePhoto} alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall" width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+      <section className="section bg-wash-warm" style={{ paddingTop: 46 }}>
+        <div className="wrap">
+          <SectionHead center eyebrow="Inside the Venue" title="Interiors" />
+          <div className="grid grid-3">
+            {[
+              { src: interior2Photo, alt: "Interior corridor with seating at Rawayat Marquee & Marriage Hall" },
+              { src: interior3Photo, alt: "Interior entrance doors at Rawayat Marquee & Marriage Hall" },
+              { src: stagePhoto, alt: "Decorated wedding stage at Rawayat Marquee & Marriage Hall" },
+            ].map((img, i) => (
+              <StaggerItem key={img.alt} index={i}>
+                <article className="card">
+                  <div className="card-img">
+                    <Img src={img.src} alt={img.alt} width={800} height={600} />
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
           </div>
         </div>
       </section>

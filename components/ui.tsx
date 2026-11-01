@@ -1,82 +1,260 @@
-import type { ReactNode } from "react";
+"use client";
 
-export function Kicker({ children }: { children: ReactNode }) {
-  return <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">{children}</p>;
-}
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
-export function GoldRule({ center = false }: { center?: boolean }) {
-  return <hr className={`my-0 h-[3px] w-16 border-0 bg-gold ${center ? "mx-auto" : ""}`} />;
-}
-
-export function SectionHeading({
-  kicker,
-  title,
-  lead,
-  center = false,
+/* ---------- scroll reveal (IntersectionObserver; no animation library) ---------- */
+export function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  style,
 }: {
-  kicker: string;
-  title: string;
-  lead?: string;
-  center?: boolean;
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  style?: CSSProperties;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
-    <div className={center ? "text-center" : ""}>
-      <Kicker>{kicker}</Kicker>
-      <h2 className="font-serif text-3xl leading-tight font-bold text-green sm:text-4xl lg:text-5xl">{title}</h2>
-      <div className="mt-3 sm:mt-4">
-        <GoldRule center={center} />
-      </div>
-      {lead ? <p className={`mt-3 max-w-2xl text-base text-muted sm:mt-4 sm:text-lg ${center ? "mx-auto" : ""}`}>{lead}</p> : null}
+    <div
+      ref={ref}
+      className={`reveal ${className}`}
+      style={{ ...style, ["--reveal-delay" as string]: `${delay}ms` }}
+    >
+      {children}
     </div>
   );
 }
 
-export function GreenButton({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} className="inline-block rounded-full bg-green px-4 py-2.5 text-sm text-center font-bold text-white sm:px-5 sm:py-3 sm:text-base hover:bg-green-dark">
-      {children}
-    </a>
-  );
-}
-
-export function GoldButton({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} className="inline-block rounded-full bg-gold px-4 py-2.5 text-sm text-center font-bold text-[#1d1a12] sm:px-5 sm:py-3 sm:text-base hover:bg-gold-dark hover:text-white">
-      {children}
-    </a>
-  );
-}
-
-export function OutlineButton({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a
-      href={href}
-      className="inline-block rounded-full border border-green bg-transparent px-4 py-2.5 text-sm text-center font-bold text-green sm:px-5 sm:py-3 sm:text-base hover:bg-green hover:text-white"
-    >
-      {children}
-    </a>
-  );
-}
-
-export function WhatsAppButton({
-  href,
+/* ---------- stagger: children fade up one after another ---------- */
+export function StaggerItem({
   children,
-  small = false,
+  index = 0,
+  gap = 90,
+  className = "",
 }: {
-  href: string;
   children: ReactNode;
-  small?: boolean;
+  index?: number;
+  gap?: number;
+  className?: string;
 }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className={`inline-block rounded-full bg-[#1f9d55] text-center font-bold text-white hover:bg-[#178344] ${
-        small ? "px-4 py-2 text-sm" : "px-4 py-2.5 text-sm sm:px-5 sm:py-3 sm:text-base"
-      }`}
-    >
+    <Reveal delay={index * gap} className={className} style={{ height: "100%" }}>
       {children}
-    </a>
+    </Reveal>
   );
+}
+
+/* ---------- buttons ---------- */
+type BtnVariant = "primary" | "gold" | "outline" | "outline-light" | "dark" | "light" | "ghost";
+
+export function Btn({
+  href,
+  to,
+  variant = "primary",
+  size,
+  block = false,
+  children,
+  onClick,
+  type = "button",
+  external = false,
+  className = "",
+}: {
+  href?: string;
+  to?: string;
+  variant?: BtnVariant;
+  size?: "sm" | "lg";
+  block?: boolean;
+  children: ReactNode;
+  onClick?: () => void;
+  type?: "button" | "submit";
+  external?: boolean;
+  className?: string;
+}) {
+  const cls = `btn btn-${variant}${size ? ` btn-${size}` : ""}${block ? " btn-block" : ""}${className ? ` ${className}` : ""}`;
+  const url = to ?? href;
+  if (url) {
+    if (external || url.startsWith("http") || url.startsWith("tel:") || url.startsWith("mailto:")) {
+      return (
+        <a
+          href={url}
+          className={cls}
+          onClick={onClick}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+        >
+          {children}
+        </a>
+      );
+    }
+    return (
+      <Link href={url} className={cls} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <button type={type} className={cls} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+/* ---------- badge ---------- */
+export function Badge({ tone, children }: { tone?: "gold" | "green" | "amber" | "grey"; children: ReactNode }) {
+  return <span className={`badge${tone ? ` badge-${tone}` : ""}`}>{children}</span>;
+}
+
+/* ---------- form field ---------- */
+export function Field({
+  label,
+  hint,
+  error,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  error?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="field">
+      <label>{label}</label>
+      {children}
+      {hint && !error && <span className="hint">{hint}</span>}
+      {error && (
+        <span className="field-err" role="alert">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* ---------- page + section heads ---------- */
+export function PageHead({
+  eyebrow,
+  title,
+  lead,
+  center = false,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  lead?: string;
+  center?: boolean;
+}) {
+  return (
+    <Reveal>
+      <div className={center ? "center" : ""} style={{ marginBottom: 28 }}>
+        {eyebrow && (
+          <span className="eyebrow">
+            <span className="rule" />
+            {eyebrow}
+          </span>
+        )}
+        <h1 style={{ fontSize: "clamp(30px, 4vw, 44px)" }}>{title}</h1>
+        {lead && <p className="lead">{lead}</p>}
+      </div>
+    </Reveal>
+  );
+}
+
+export function SectionHead({
+  eyebrow,
+  title,
+  lead,
+  center = false,
+  action,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  lead?: string;
+  center?: boolean;
+  action?: ReactNode;
+}) {
+  return (
+    <Reveal>
+      <div className={center ? "center" : ""} style={{ marginBottom: 34 }}>
+        <div
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}
+        >
+          <div>
+            {eyebrow && (
+              <span className="eyebrow">
+                <span className="rule" />
+                {eyebrow}
+              </span>
+            )}
+            <h2 style={{ fontSize: "clamp(26px, 3.2vw, 36px)", marginBottom: 6 }}>{title}</h2>
+            {lead && (
+              <p className="lead" style={{ marginBottom: 0 }}>
+                {lead}
+              </p>
+            )}
+          </div>
+          {action}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+/* ---------- image (Next.js, lazy by default) ---------- */
+export function Img({
+  src,
+  alt,
+  width,
+  height,
+  className = "",
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+      loading={priority ? undefined : "lazy"}
+    />
+  );
+}
+
+/* ---------- chip ---------- */
+export function Chip({ children, onClick }: { children: ReactNode; onClick?: () => void }) {
+  if (onClick) {
+    return (
+      <button type="button" className="chip" onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
+  return <span className="chip">{children}</span>;
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import { ExtrasCatalog, MenuCatalogSection, MenuPackageCard } from "@/components/MenuCard";
-import { OutlineButton } from "@/components/ui";
-import { MENUS, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { Badge, Btn, PageHead, Reveal } from "@/components/ui";
+import { PHONE_DISPLAY, PHONE_TEL, WA_MENU } from "@/lib/site";
+import { MENUS } from "@/lib/menu-data";
 
 export const metadata: Metadata = {
   title: "Wedding Menu — Rawayat Marquee & Marriage Hall, Kharian",
@@ -13,39 +14,56 @@ export const metadata: Metadata = {
 export default function MenuPage() {
   return (
     <>
-      <Hero center kicker="Wedding Menu" title={<>Our menu &amp; packages</>}>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">
-          Three wedding menus, plus extra dishes, for your celebration.
-        </p>
+      <Hero
+        eyebrow="Food & Menus"
+        title={<>Wedding <em>menu packages</em></>}
+        sub="Three curated wedding menus, plus a full extra-dishes catalog — every dish with its photo."
+      >
+        <div className="hero-ctas">
+          <Btn href={WA_MENU} external variant="gold">
+            Ask About Menus on WhatsApp
+          </Btn>
+          <Btn href={PHONE_TEL} variant="outline-light">
+            Call {PHONE_DISPLAY}
+          </Btn>
+        </div>
       </Hero>
 
-      {/* One main heading that explains the menus, in Urdu first, then English. */}
-      <section className="mx-auto max-w-6xl px-5 pt-10 pb-2 text-center sm:pt-16">
-        <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Our Menu</p>
-        <h2 dir="rtl" lang="ur" className="font-urdu text-3xl leading-[1.8] font-bold text-green sm:text-5xl">
-          ہمارے ویڈنگ مینیو
-        </h2>
-        <h3 className="mt-1 font-serif text-2xl font-bold text-green sm:text-3xl">Our Wedding Menus</h3>
-        <hr className="mx-auto mt-5 h-[3px] w-16 border-0 bg-gold" />
-      </section>
-
-      <section className="mx-auto max-w-6xl px-5 py-8 sm:py-12">
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          {MENUS.map((menu) => (
-            <MenuPackageCard key={menu.id} menu={menu} />
+      <section className="wrap section-tight">
+        <PageHead
+          eyebrow="Our Menus"
+          title="Three wedding menus"
+          lead="Pick a menu, then ask about it on WhatsApp — the venue confirms the final details with you directly."
+        />
+        <div className="grid grid-3" style={{ marginBottom: 8 }}>
+          {MENUS.map((menu, i) => (
+            <MenuPackageCard key={menu.id} menu={menu} index={i} />
           ))}
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-10 sm:py-16">
-        <div className="mx-auto max-w-6xl px-5">
+      <section className="section bg-wash-warm" style={{ paddingTop: 46 }}>
+        <div className="wrap">
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 30, flexWrap: "wrap" }}>
+              <span className="eyebrow" style={{ marginBottom: 0 }}>
+                <span className="rule" />
+                Full catalog
+              </span>
+              <Badge tone="gold">No prices — ask on WhatsApp</Badge>
+            </div>
+          </Reveal>
           {MENUS.map((menu) => (
             <MenuCatalogSection key={menu.id} menu={menu} />
           ))}
           <ExtrasCatalog />
-          <p className="mt-6 text-center sm:mt-10">
-            <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
-          </p>
+          <Reveal>
+            <p style={{ marginTop: 36, textAlign: "center" }}>
+              <Btn href={PHONE_TEL} variant="primary" size="lg">
+                Call {PHONE_DISPLAY}
+              </Btn>
+            </p>
+          </Reveal>
         </div>
       </section>
     </>

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Hero from "@/components/Hero";
-import { OutlineButton } from "@/components/ui";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { HALLS } from "@/lib/halls";
+import { Badge, Btn, Img, PageHead, Reveal, StaggerItem } from "@/components/ui";
+import { PHONE_DISPLAY, PHONE_TEL, WA_GENERAL } from "@/lib/site";
+import { HALLS, hallWaLink } from "@/lib/halls";
 import { interior1Photo } from "@/lib/photos/interior1";
 import { interior2Photo } from "@/lib/photos/interior2";
 import { interior3Photo } from "@/lib/photos/interior3";
@@ -23,80 +22,99 @@ const INTERIORS = [
 export default function HallsPage() {
   return (
     <>
-      <Hero center kicker="Our Halls" title={<>Four spaces for<br />your celebration</>}>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">
-          Main Hall, Hall 2, Hall 3 and a Marquee — all at Rawayat Marquee &amp; Marriage Hall, Kharian.
-        </p>
+      <Hero
+        eyebrow="Our Halls"
+        title={<>Four spaces for <em>your celebration</em></>}
+        sub="Main Hall, Hall 2, Hall 3 and a Marquee — all at Rawayat Marquee & Marriage Hall, Kharian."
+      >
+        <div className="hero-ctas">
+          <Btn href={WA_GENERAL} external variant="gold">
+            Check Availability on WhatsApp
+          </Btn>
+          <Btn to="/gallery" variant="outline-light">
+            See Photos
+          </Btn>
+        </div>
       </Hero>
 
-      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
-        <p className="max-w-2xl text-base text-muted sm:text-lg">
-          Four spaces for weddings and family celebrations — Main Hall, Hall 2, Hall 3 and a Marquee. Confirm your
-          date and guest count on WhatsApp or by telephone. Hall 3
-          and Marquee photos are representative images for now, clearly marked below, and will be replaced with the
-          venue&apos;s own photos when available.
-        </p>
-
-        <div className="mt-6 sm:mt-8">
+      <section className="wrap section-tight">
+        <PageHead
+          eyebrow="The Spaces"
+          title="Halls & marquee"
+          lead="Four spaces for weddings and family celebrations. Confirm your date and guest count on WhatsApp or by telephone."
+        />
+        <div className="grid" style={{ gap: 28 }}>
           {HALLS.map((hall, i) => (
-            <div
-              key={hall.id}
-              id={hall.id}
-              className="grid scroll-mt-28 items-center gap-5 border-b border-line py-6 last:border-b-0 sm:gap-8 sm:py-9 md:grid-cols-2"
-            >
-              <Image
-                src={hall.image}
-                alt={hall.alt}
-                width={900}
-                height={675}
-                className={`h-[360px] w-full rounded-2xl object-cover max-md:h-[200px] ${i % 2 === 1 ? "md:order-2" : ""}`}
-              />
-              <div>
-                <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">
-                  Hall 0{i + 1}
-                </p>
-                <h2 className="font-serif text-3xl font-bold text-green sm:text-4xl">{hall.name}</h2>
-                <hr className="mt-4 h-[3px] w-16 border-0 bg-gold" />
-                <p className="mt-4 text-muted">{hall.blurb}</p>
-                <p className="mt-3 flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-green/30 px-3 py-1 text-sm font-bold text-green">
-                    {hall.guests} guests
+            <StaggerItem key={hall.id} index={i}>
+              <article className="card pkg-card" id={hall.id} style={{ scrollMarginTop: 90 }}>
+                {hall.badge && (
+                  <span className="badge badge-gold pkg-flag">
+                    <span
+                      style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--color-champagne-600)", display: "inline-block" }}
+                    />
+                    {hall.badge}
                   </span>
-                  <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">Indoor</span>
-                </p>
-                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
-                  {hall.amenities.map((a) => (
-                    <li key={a} className="text-sm text-muted">
-                      <span className="mr-1.5 font-bold text-gold-dark">✓</span>
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-                {hall.representative ? (
-                  <p className="mt-2 text-sm text-muted">
-                    Representative photo for now — the venue&apos;s own {hall.name.toLowerCase()} photo will replace it
-                    when supplied.
-                  </p>
-                ) : null}
-                <div className="mt-5 flex flex-wrap gap-2.5">
-                  <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
+                )}
+                <div className="grid grid-2" style={{ gap: 0, alignItems: "stretch" }}>
+                  <div className="card-img" style={{ aspectRatio: "auto", minHeight: 260, borderRadius: 0 }}>
+                    <Img src={hall.image} alt={hall.alt} width={900} height={620} />
+                  </div>
+                  <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    <p className="eyebrow" style={{ marginBottom: 4 }}>
+                      <span className="rule" />
+                      Hall 0{i + 1}
+                    </p>
+                    <h3 className="card-title" style={{ fontSize: 26 }}>{hall.name}</h3>
+                    <p className="card-meta">{hall.blurb}</p>
+                    <div className="chip-row" style={{ marginBottom: 12 }}>
+                      <Badge tone="green">{hall.guests} guests</Badge>
+                      <Badge tone="gold">Indoor</Badge>
+                      <Badge>{hall.id === "marquee" ? "Marquee" : "Banquet Hall"}</Badge>
+                    </div>
+                    <ul className="why-list small" style={{ marginBottom: 14, gridTemplateColumns: "1fr 1fr" }}>
+                      {hall.amenities.map((a) => (
+                        <li key={a}>{a}</li>
+                      ))}
+                    </ul>
+                    {hall.representative && (
+                      <p className="small muted">
+                        Representative photo for now — the venue&apos;s own {hall.name.toLowerCase()} photo will replace
+                        it when supplied.
+                      </p>
+                    )}
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                      <Btn href={hallWaLink(hall)} external variant="primary" size="sm">
+                        Check Availability
+                      </Btn>
+                      <Btn href={PHONE_TEL} variant="outline" size="sm">
+                        Call {PHONE_DISPLAY}
+                      </Btn>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </article>
+            </StaggerItem>
           ))}
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-10 sm:py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="text-center">
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Inside the Venue</p>
-            <h2 className="font-serif text-4xl font-bold text-green">Interiors</h2>
-            <hr className="mx-auto mt-4 h-[3px] w-16 border-0 bg-gold" />
-          </div>
-          <div className="mt-7 grid gap-5 sm:grid-cols-3">
-            {INTERIORS.map((img) => (
-              <Image key={img.src} src={img.src} alt={img.alt} width={800} height={600} className="h-60 w-full rounded-2xl object-cover" />
+      <section className="section bg-wash-mint" style={{ paddingTop: 46 }}>
+        <div className="wrap">
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+              <h3 style={{ margin: 0 }}>Interiors</h3>
+              <span className="brandline" style={{ marginBottom: 0, flex: 1 }} />
+            </div>
+          </Reveal>
+          <div className="grid grid-3">
+            {INTERIORS.map((img, i) => (
+              <StaggerItem key={img.alt} index={i}>
+                <article className="card">
+                  <div className="card-img">
+                    <Img src={img.src} alt={img.alt} width={800} height={600} />
+                  </div>
+                </article>
+              </StaggerItem>
             ))}
           </div>
         </div>

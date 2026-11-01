@@ -1,173 +1,195 @@
-import Image from "next/image";
 import Link from "next/link";
-import { EXTRA_DISHES, type Menu, type MenuLine } from "@/lib/site";
+import { EXTRA_DISHES, type Menu, type MenuLine } from "@/lib/menu-data";
+import { Badge, Img, Reveal, StaggerItem } from "@/components/ui";
 
-/**
- * Preview card heading (home showcase): main heading = "Menu 1",
- * sub heading = the first item (e.g. "Mutton Qorma / Mutton Karahi").
- */
-function PreviewHeading({ menu, big = false }: { menu: Menu; big?: boolean }) {
-  const first = menu.lines[0];
+/* ---------- dish card with photo (menu catalog) ---------- */
+export function DishCard({ line, index = 0 }: { line: MenuLine; index?: number }) {
   return (
-    <div>
-      <h3 className={`font-serif font-bold text-green ${big ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"}`}>{menu.name}</h3>
-      <p className={`mt-1 font-semibold text-green ${big ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}>{first.en}</p>
-      <p dir="rtl" lang="ur" className={`text-right font-urdu leading-8 text-gold-dark sm:leading-9 ${big ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}>
-        {first.ur}
-      </p>
-    </div>
+    <StaggerItem index={index}>
+      <article className="card h-full">
+        <div className="card-img">
+          <Img src={line.img} alt={line.en} width={640} height={400} />
+        </div>
+        <div className="card-body" style={{ padding: "12px 16px 16px" }}>
+          <h4 title={line.en} className="truncate" style={{ fontSize: 15, marginBottom: 2 }}>
+            {line.en}
+          </h4>
+          <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 15, color: "var(--color-ink-400)", margin: 0, lineHeight: 1.9 }}>
+            {line.ur}
+          </p>
+        </div>
+      </article>
+    </StaggerItem>
   );
 }
 
-/** Showcase preview card for the home page — headings + plain item list, no photos. */
-export function MenuCardPreview({ menu }: { menu: Menu }) {
-  return (
-    <article className="glass-card flex flex-col p-4 sm:p-6">
-      <PreviewHeading menu={menu} />
-      <ul className="mt-3">
-        {menu.lines.slice(1).map((line: MenuLine) => (
-          <li
-            key={line.en}
-            className="flex items-baseline justify-between gap-3 border-b border-dashed border-line py-1.5 last:border-b-0 sm:py-2"
-          >
-            <span title={line.en} className="truncate text-sm text-ink">{line.en}</span>
-            <span dir="rtl" lang="ur" className="shrink-0 text-right font-urdu text-base leading-7 text-muted sm:text-lg sm:leading-8">
-              {line.ur}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-auto pt-3 sm:pt-4">
-        <Link
-          href={`/menu#${menu.id}`}
-          className="inline-block rounded-full border border-green px-3.5 py-1.5 text-[13px] font-bold text-green hover:bg-green hover:text-white sm:px-4 sm:py-2 sm:text-sm"
-        >
-          View {menu.name}
-        </Link>
-      </p>
-    </article>
-  );
-}
-
-/** Dish card with photo — ShadiSphere menus-page style (no prices). */
-function DishCard({ line }: { line: MenuLine }) {
-  return (
-    <article className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-      <Image src={line.img} alt={line.en} width={640} height={360} className="aspect-video w-full object-cover" />
-      <div className="p-2.5 sm:p-4">
-        <h4 title={line.en} className="truncate text-sm font-semibold text-green sm:text-base">{line.en}</h4>
-        <p dir="rtl" lang="ur" className="mt-0.5 text-right font-urdu text-base leading-7 text-muted sm:mt-1 sm:text-lg sm:leading-8">
-          {line.ur}
-        </p>
-      </div>
-    </article>
-  );
-}
-
-/** Package-style card for the /menu page top — photo, title, tagline, dish list. */
-export function MenuPackageCard({ menu }: { menu: Menu }) {
+/* ---------- package-style card (menu page top + home preview) ---------- */
+export function MenuPackageCard({ menu, index = 0, compact = false }: { menu: Menu; index?: number; compact?: boolean }) {
   const first = menu.lines[0];
   const rest = menu.lines.slice(1);
   return (
-    <article className="flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-card">
-      <Image src={first.img} alt={first.en} width={800} height={450} className="aspect-video w-full object-cover" />
-      <div className="flex flex-1 flex-col p-4 sm:p-6">
-        <p className="mb-1 text-xs font-bold tracking-[0.22em] text-gold-dark uppercase">{menu.name}</p>
-        <h3 className="font-serif text-xl font-bold text-green sm:text-2xl">{first.en}</h3>
-        <p dir="rtl" lang="ur" className="text-right font-urdu text-lg leading-8 text-muted">
-          {first.ur}
-        </p>
-        <ul className="mt-3 sm:mt-4">
-          {rest.slice(0, 5).map((l) => (
-            <li key={l.en} className="border-b border-dashed border-line py-1 text-[13px] text-ink last:border-b-0 sm:py-1.5 sm:text-sm">
-              <span className="mr-1.5 font-bold text-gold-dark">✓</span>
-              {l.en}
-            </li>
-          ))}
-          {rest.length > 5 && (
-            <li className="py-1 text-[13px] font-semibold text-gold-dark sm:py-1.5 sm:text-sm">+{rest.length - 5} more dishes</li>
+    <StaggerItem index={index}>
+      <article className="card pkg-card h-full">
+        <div className="card-img">
+          <Img src={first.img} alt={`${menu.name} — ${first.en}`} width={800} height={500} />
+        </div>
+        <div className="card-body">
+          <p className="eyebrow" style={{ marginBottom: 4 }}>
+            <span className="rule" />
+            {menu.name}
+          </p>
+          <h3 className="card-title" style={{ fontSize: 22 }}>{first.en}</h3>
+          <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 16, color: "var(--color-champagne-600)", margin: "0 0 10px", lineHeight: 1.9 }}>
+            {first.ur}
+          </p>
+          {!compact && (
+            <ul className="why-list small" style={{ marginBottom: 16 }}>
+              {rest.slice(0, 5).map((l) => (
+                <li key={l.en}>{l.en}</li>
+              ))}
+              {rest.length > 5 && <li className="muted">+{rest.length - 5} more dishes</li>}
+            </ul>
           )}
-        </ul>
-        <p className="mt-auto pt-4 sm:pt-5">
-          <Link
-            href={`/menu#${menu.id}`}
-            className="block w-full rounded-full border border-green px-4 py-2 text-center text-sm font-bold text-green hover:bg-green hover:text-white sm:py-2.5"
-          >
+          <Link href={`/menu#${menu.id}`} className="btn btn-outline btn-sm btn-block">
             View Full Menu
           </Link>
-        </p>
-      </div>
-    </article>
+        </div>
+      </article>
+    </StaggerItem>
   );
 }
 
-/** Full dish catalog for one menu on the /menu page. */
+/* ---------- home showcase card: headings + text-only item list ---------- */
+export function MenuPreviewCard({ menu, index = 0 }: { menu: Menu; index?: number }) {
+  const first = menu.lines[0];
+  return (
+    <StaggerItem index={index}>
+      <article className="card h-full">
+        <div className="card-body">
+          <p className="eyebrow" style={{ marginBottom: 4 }}>
+            <span className="rule" />
+            {menu.name}
+          </p>
+          <h3 style={{ fontSize: 22, marginBottom: 2 }}>{first.en}</h3>
+          <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 16, color: "var(--color-champagne-600)", margin: "0 0 8px", lineHeight: 1.9 }}>
+            {first.ur}
+          </p>
+          <ul style={{ listStyle: "none", margin: "0 0 14px", padding: 0 }}>
+            {menu.lines.slice(1).map((line) => (
+              <li
+                key={line.en}
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  gap: 12,
+                  padding: "7px 0",
+                  borderBottom: "1px dashed var(--color-cream-300)",
+                  fontSize: 13.5,
+                }}
+              >
+                <span title={line.en} className="truncate">{line.en}</span>
+                <span dir="rtl" lang="ur" className="font-urdu" style={{ flexShrink: 0, textAlign: "right", fontSize: 14, color: "var(--color-ink-400)", lineHeight: 1.9 }}>
+                  {line.ur}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Link href={`/menu#${menu.id}`} className="btn btn-outline btn-sm">
+            View {menu.name}
+          </Link>
+        </div>
+      </article>
+    </StaggerItem>
+  );
+}
+
+/* ---------- full catalog section for one menu ---------- */
 export function MenuCatalogSection({ menu }: { menu: Menu }) {
   const first = menu.lines[0];
   return (
-    <section id={menu.id} className="mb-10 scroll-mt-28 sm:mb-14">
-      <div className="mb-1 flex items-center gap-4">
-        <h3 className="font-serif text-2xl font-bold text-green sm:text-3xl">{menu.name}</h3>
-        <span aria-hidden="true" className="h-[3px] flex-1 rounded bg-gold/60" />
-        <span className="text-sm text-muted">{menu.lines.length} items</span>
-      </div>
-      <p className="mb-4 text-sm text-muted sm:mb-5 sm:text-base">
-        {first.en} <span dir="rtl" lang="ur" className="font-urdu text-gold-dark">{first.ur}</span>
-      </p>
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-        {menu.lines.map((line) => (
-          <DishCard key={line.en} line={line} />
+    <section id={menu.id} style={{ marginBottom: 52, scrollMarginTop: 90 }}>
+      <Reveal>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 4 }}>
+          <h3 style={{ margin: 0, fontSize: "clamp(22px, 3vw, 30px)" }}>{menu.name}</h3>
+          <span className="brandline" style={{ marginBottom: 0, flex: 1 }} />
+          <span className="small muted">{menu.lines.length} items</span>
+        </div>
+      </Reveal>
+      <Reveal>
+        <p className="muted" style={{ marginBottom: 18 }}>
+          {first.en}{" "}
+          <span dir="rtl" lang="ur" className="font-urdu" style={{ color: "var(--color-champagne-600)", fontSize: 15 }}>
+            {first.ur}
+          </span>
+        </p>
+      </Reveal>
+      <div className="grid-dishes">
+        {menu.lines.map((line, i) => (
+          <DishCard key={line.en} line={line} index={i} />
         ))}
       </div>
     </section>
   );
 }
 
-/** Extra dishes catalog for the /menu page. */
+/* ---------- extras catalog ---------- */
 export function ExtrasCatalog() {
   return (
-    <section className="mb-4">
-      <div className="mb-1 flex items-center gap-4">
-        <h3 className="font-serif text-2xl font-bold text-green sm:text-3xl">Extra Dishes</h3>
-        <span aria-hidden="true" className="h-[3px] flex-1 rounded bg-gold/60" />
-        <span className="text-sm text-muted">{EXTRA_DISHES.length} items</span>
-      </div>
-      <p dir="rtl" lang="ur" className="mb-4 text-right font-urdu text-lg leading-8 text-gold-dark sm:mb-5 sm:text-xl sm:leading-9">
-        اضافی ڈشز
-      </p>
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-        {EXTRA_DISHES.map((dish) => (
-          <DishCard key={dish.en} line={dish} />
+    <section style={{ marginBottom: 8 }}>
+      <Reveal>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 4 }}>
+          <h3 style={{ margin: 0, fontSize: "clamp(22px, 3vw, 30px)" }}>Extra Dishes</h3>
+          <span className="brandline" style={{ marginBottom: 0, flex: 1 }} />
+          <span className="small muted">{EXTRA_DISHES.length} items</span>
+        </div>
+      </Reveal>
+      <Reveal>
+        <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 17, color: "var(--color-champagne-600)", marginBottom: 18 }}>
+          اضافی ڈشز
+        </p>
+      </Reveal>
+      <div className="grid-dishes">
+        {EXTRA_DISHES.map((dish, i) => (
+          <DishCard key={dish.en} line={dish} index={i} />
         ))}
       </div>
     </section>
   );
 }
 
-/** Extras card for the home page — every extra dish with its photo. */
+/* ---------- extras card for the home page ---------- */
 export function ExtrasCard() {
   return (
-    <article className="glass-card p-4 sm:p-8">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="font-serif text-2xl font-bold text-green sm:text-3xl">Extra Dishes</h3>
-        <span dir="rtl" lang="ur" className="font-urdu text-xl leading-9 text-gold-dark sm:text-2xl sm:leading-10">
-          اضافی ڈشز
-        </span>
-      </div>
-      <p className="mt-1.5 text-sm text-muted sm:mt-2 sm:text-base">Additional items available alongside the menus above.</p>
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-5 sm:grid-cols-3 sm:gap-4">
-        {EXTRA_DISHES.map((dish) => (
-          <div key={dish.en} className="overflow-hidden rounded-2xl border border-line bg-white">
-            <Image src={dish.img} alt={dish.en} width={400} height={300} className="h-20 w-full object-cover sm:h-24" />
-            <div className="p-2 sm:p-2.5">
-              <p className="truncate text-[13px] font-semibold text-green sm:text-sm">{dish.en}</p>
-              <p dir="rtl" lang="ur" className="text-right font-urdu text-sm leading-6 text-muted sm:text-base sm:leading-7">
-                {dish.ur}
-              </p>
-            </div>
+    <Reveal>
+      <article className="card">
+        <div className="card-body">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+            <h3 style={{ marginBottom: 2 }}>Extra Dishes</h3>
+            <span dir="rtl" lang="ur" className="font-urdu" style={{ fontSize: 18, color: "var(--color-champagne-600)" }}>
+              اضافی ڈشز
+            </span>
           </div>
-        ))}
-      </div>
-    </article>
+          <p className="muted small" style={{ marginBottom: 16 }}>
+            Additional items available alongside the menus above.
+          </p>
+          <div className="grid-dishes">
+            {EXTRA_DISHES.map((dish, i) => (
+              <DishCard key={dish.en} line={dish} index={i} />
+            ))}
+          </div>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+/* ---------- hall badges ---------- */
+export function HallBadges({ guests }: { guests: string }) {
+  return (
+    <span style={{ display: "inline-flex", flexWrap: "wrap", gap: 8 }}>
+      <Badge tone="green">{guests} guests</Badge>
+      <Badge tone="gold">Indoor</Badge>
+    </span>
   );
 }
