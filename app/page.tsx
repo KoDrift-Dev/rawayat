@@ -90,30 +90,30 @@ export default function HomePage() {
         </p>
         <div className="mt-8 flex flex-col gap-5">
           {HALLS.map((hall) => (
-            <article key={hall.id} className="grid overflow-hidden rounded-3xl border border-line bg-white shadow-card md:grid-cols-5">
+            <article key={hall.id} className="grid overflow-hidden rounded-3xl border border-line bg-white shadow-card md:mx-auto md:max-w-3xl md:grid-cols-5">
               <div className="relative md:col-span-2">
-                <Image src={hall.image} alt={hall.alt} width={900} height={675} className="h-60 w-full object-cover md:h-full" />
+                <Image src={hall.image} alt={hall.alt} width={900} height={675} className="h-60 w-full object-cover md:h-72" />
                 {hall.badge ? (
                   <span className="absolute top-3 right-3 rounded-full bg-gold px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
                     {hall.badge}
                   </span>
                 ) : null}
               </div>
-              <div className="p-5 md:col-span-3 lg:p-7">
+              <div className="p-5 md:col-span-3 md:p-4">
                 <p className="flex flex-wrap gap-2">
                   <span className="rounded-full bg-green-soft px-3 py-1 text-xs font-bold text-green">
                     {hall.id === "marquee" ? "Marquee" : "Banquet Hall"}
                   </span>
                   <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">Indoor</span>
                 </p>
-                <h3 className="mt-3 font-serif text-3xl font-bold text-green">{hall.name}</h3>
+                <h3 className="mt-3 font-serif text-3xl font-bold text-green md:mt-2 md:text-2xl">{hall.name}</h3>
                 <p className="mt-2 text-muted">{hall.blurb}</p>
                 <p className="mt-3 flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-green/30 px-3 py-1 text-sm font-bold text-green">
                     {hall.guests} guests
                   </span>
                 </p>
-                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
+                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 md:grid-cols-3">
                   {hall.amenities.map((a) => (
                     <li key={a} className="text-sm text-muted">
                       <span className="mr-1.5 font-bold text-gold-dark">✓</span>
