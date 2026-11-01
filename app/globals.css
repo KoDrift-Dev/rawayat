@@ -368,6 +368,8 @@ textarea.input { @apply min-h-[96px]; resize: vertical; }
 .field-err { @apply text-[12.5px] font-medium; color: #b3402e; }
 .form-row { @apply grid gap-4; }
 .form-row.c2 { grid-template-columns: repeat(2, 1fr); }
+/* compact inquiry form: stays 2-col even on phones */
+.form-row.c2.keep-2 { grid-template-columns: repeat(2, 1fr); }
 
 /* ================= navbar ================= */
 .nav-shell {
@@ -551,7 +553,14 @@ textarea.input { @apply min-h-[96px]; resize: vertical; }
   .hero-ctas .btn { font-size: 12px; padding: 9px 12px; min-height: 44px; white-space: nowrap; }
   .func-grid { grid-template-columns: 1fr 1fr; }
   .g-row { grid-template-columns: repeat(3, 1fr); }
-  .contact-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 14px; }
+  /* compact inquiry form on phones */
+  .form-row.c2.keep-2 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .input { padding: 9px 11px; font-size: 13.5px; border-radius: 10px; }
+  .field { gap: 5px; }
+  .field label { font-size: 12px; }
+  .venue-card .card-body > p { margin-bottom: 8px; }
+  .inquiry-card .card-body { padding: 14px; }
   .card-body { @apply px-4 pt-4 pb-4; }
   .card-title { font-size: 18px; }
   .footer-inner { grid-template-columns: 1fr; }

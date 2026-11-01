@@ -24,7 +24,7 @@ export default function InquiryForm() {
 
   return (
     <form onSubmit={submit}>
-      <div className="form-row c2">
+      <div className="form-row c2 keep-2">
         <Field label="Your Name">
           <input
             id="inq-name"
@@ -65,8 +65,6 @@ export default function InquiryForm() {
             className="input"
           />
         </Field>
-      </div>
-      <div style={{ marginTop: 16 }}>
         <Field label="Expected Guests">
           <input
             id="inq-guests"
@@ -79,18 +77,18 @@ export default function InquiryForm() {
             inputMode="numeric"
           />
         </Field>
+        <div style={{ display: "flex", alignItems: "flex-end" }}>
+          <Btn type="submit" variant="gold" block>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <WhatsAppIcon className="h-5 w-5" />
+              Send Inquiry
+            </span>
+          </Btn>
+        </div>
       </div>
-      <div style={{ marginTop: 20 }}>
-        <Btn type="submit" variant="gold" block>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-            <WhatsAppIcon className="h-5 w-5" />
-            Send Inquiry on WhatsApp
-          </span>
-        </Btn>
-        <p className="small muted" style={{ marginTop: 10, marginBottom: 0, textAlign: "center" }}>
-          Opens WhatsApp with your details prefilled — nothing is booked or stored here.
-        </p>
-      </div>
+      <p className="small muted" style={{ marginTop: 8, marginBottom: 0, textAlign: "center" }}>
+        Opens WhatsApp with your details prefilled — nothing is booked or stored here.
+      </p>
     </form>
   );
 }

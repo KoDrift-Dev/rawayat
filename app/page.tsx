@@ -217,7 +217,7 @@ export default function HomePage() {
         />
         <div className="grid contact-grid" style={{ marginBottom: 20 }}>
           <Reveal>
-            <article className="card h-full">
+            <article className="card h-full venue-card">
               <div className="card-body">
                 <h3 className="card-title">Venue Information</h3>
                 <div className="divider" style={{ margin: "12px 0" }} />
@@ -243,7 +243,7 @@ export default function HomePage() {
             </article>
           </Reveal>
           <Reveal delay={120}>
-            <article className="card h-full">
+            <article className="card h-full inquiry-card">
               <div className="card-body">
                 <h3 className="card-title">Booking Inquiry</h3>
                 <div className="divider" style={{ margin: "12px 0" }} />
