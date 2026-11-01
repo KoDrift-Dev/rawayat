@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import { ExtrasCatalog, MenuCatalogSection, MenuPackageCard } from "@/components/MenuCard";
-import { Badge, Btn, PageHead, Reveal } from "@/components/ui";
+import { Btn, PageHead, Reveal } from "@/components/ui";
 import { PHONE_DISPLAY, PHONE_TEL, WA_MENU } from "@/lib/site";
 import { MENUS } from "@/lib/menu-data";
 
@@ -21,9 +21,9 @@ export default function MenuPage() {
       >
         <div className="hero-ctas">
           <Btn href={WA_MENU} external variant="gold">
-            Ask About Menus on WhatsApp
+            Ask on WhatsApp
           </Btn>
-          <Btn href={PHONE_TEL} variant="outline-light">
+          <Btn href={PHONE_TEL} variant="outline-light" className="ml-auto">
             Call {PHONE_DISPLAY}
           </Btn>
         </div>
@@ -50,7 +50,6 @@ export default function MenuPage() {
                 <span className="rule" />
                 Full catalog
               </span>
-              <Badge tone="gold">No prices — ask on WhatsApp</Badge>
             </div>
           </Reveal>
           {MENUS.map((menu) => (

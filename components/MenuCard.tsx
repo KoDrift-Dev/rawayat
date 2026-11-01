@@ -30,24 +30,23 @@ export function MenuPackageCard({ menu, index = 0, compact = false }: { menu: Me
   return (
     <StaggerItem index={index}>
       <article className="card pkg-card h-full">
-        <div className="card-img">
-          <Img src={first.img} alt={`${menu.name} — ${first.en}`} width={800} height={500} />
+        <div className="card-img compact">
+          <Img src={first.img} alt={`${menu.name} — ${first.en}`} width={800} height={400} />
         </div>
         <div className="card-body">
           <p className="eyebrow" style={{ marginBottom: 4 }}>
             <span className="rule" />
             {menu.name}
           </p>
-          <h3 className="card-title" style={{ fontSize: 22 }}>{first.en}</h3>
-          <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 16, color: "var(--color-champagne-600)", margin: "0 0 10px", lineHeight: 1.9 }}>
+          <h3 className="card-title" style={{ fontSize: 20 }}>{first.en}</h3>
+          <p dir="rtl" lang="ur" className="font-urdu" style={{ textAlign: "right", fontSize: 15, color: "var(--color-champagne-600)", margin: "0 0 8px", lineHeight: 1.9 }}>
             {first.ur}
           </p>
           {!compact && (
-            <ul className="why-list small" style={{ marginBottom: 16 }}>
-              {rest.slice(0, 5).map((l) => (
+            <ul className="why-list small" style={{ marginBottom: 14 }}>
+              {rest.map((l) => (
                 <li key={l.en}>{l.en}</li>
               ))}
-              {rest.length > 5 && <li className="muted">+{rest.length - 5} more dishes</li>}
             </ul>
           )}
           <Link href={`/menu#${menu.id}`} className="btn btn-outline btn-sm btn-block">
