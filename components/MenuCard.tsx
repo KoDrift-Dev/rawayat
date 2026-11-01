@@ -30,7 +30,7 @@ export function MenuCardPreview({ menu }: { menu: Menu }) {
             key={line.en}
             className="flex items-baseline justify-between gap-3 border-b border-dashed border-line py-2 last:border-b-0"
           >
-            <span className="text-sm text-ink">{line.en}</span>
+            <span title={line.en} className="truncate text-sm text-ink">{line.en}</span>
             <span dir="rtl" lang="ur" className="shrink-0 text-right font-urdu text-lg leading-8 text-muted">
               {line.ur}
             </span>
@@ -55,7 +55,7 @@ function DishCard({ line }: { line: MenuLine }) {
     <article className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
       <Image src={line.img} alt={line.en} width={640} height={360} className="aspect-video w-full object-cover" />
       <div className="p-4">
-        <h4 className="font-semibold text-green">{line.en}</h4>
+        <h4 title={line.en} className="truncate font-semibold text-green">{line.en}</h4>
         <p dir="rtl" lang="ur" className="mt-1 text-right font-urdu text-lg leading-8 text-muted">
           {line.ur}
         </p>
@@ -114,7 +114,7 @@ export function MenuCatalogSection({ menu }: { menu: Menu }) {
       <p className="mb-5 text-muted">
         {first.en} <span dir="rtl" lang="ur" className="font-urdu text-gold-dark">{first.ur}</span>
       </p>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {menu.lines.map((line) => (
           <DishCard key={line.en} line={line} />
         ))}
@@ -135,7 +135,7 @@ export function ExtrasCatalog() {
       <p dir="rtl" lang="ur" className="mb-5 text-right font-urdu text-xl leading-9 text-gold-dark">
         اضافی ڈشز
       </p>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {EXTRA_DISHES.map((dish) => (
           <DishCard key={dish.en} line={dish} />
         ))}
