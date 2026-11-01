@@ -40,6 +40,11 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         © {new Date().getFullYear()} Rawayat Marquee &amp; Marriage Hall, Kharian. Enquiries only — no online booking.
+        <br />
+        Designed by{" "}
+        <a href="https://kodriftdev.vercel.app" target="_blank" rel="noreferrer">
+          KoDriftDev
+        </a>
       </div>
     </footer>
   );

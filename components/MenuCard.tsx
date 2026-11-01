@@ -60,11 +60,11 @@ export function MenuPackageCard({ menu, index = 0, compact = false }: { menu: Me
 }
 
 /* ---------- home showcase card: headings + text-only item list ---------- */
-export function MenuPreviewCard({ menu, index = 0 }: { menu: Menu; index?: number }) {
+export function MenuPreviewCard({ menu, index = 0, tint = "" }: { menu: Menu; index?: number; tint?: string }) {
   const first = menu.lines[0];
   return (
     <StaggerItem index={index}>
-      <article className="card h-full">
+      <article className={`card h-full${tint ? ` ${tint}` : ""}`}>
         <div className="card-body">
           <p className="eyebrow" style={{ marginBottom: 4 }}>
             <span className="rule" />

@@ -128,15 +128,10 @@ export default function HomePage() {
             eyebrow="Our Menu"
             title="Three wedding menus"
             lead="Three wedding menus, plus extra dishes, for your celebration."
-            action={
-              <Btn to="/menu" variant="outline" size="sm">
-                View Complete Menu
-              </Btn>
-            }
           />
-          <div className="grid grid-3" style={{ marginBottom: 28 }}>
+          <div className="grid grid-3" style={{ marginBottom: 28, marginTop: -12 }}>
             {MENUS.map((menu, i) => (
-              <MenuPreviewCard key={menu.id} menu={menu} index={i} />
+              <MenuPreviewCard key={menu.id} menu={menu} index={i} tint={`menu-tint-${(i % 3) + 1}`} />
             ))}
           </div>
           <ExtrasCard />
@@ -153,7 +148,7 @@ export default function HomePage() {
         <div className="func-grid">
           {FUNCTIONS.map((f, i) => (
             <StaggerItem key={f.name} index={i}>
-              <div className="func-item">
+              <div className={`func-item func-tint-${(i % 3) + 1}`}>
                 <Img src={FUNC_PHOTOS[i % FUNC_PHOTOS.length]} alt={f.name} width={104} height={104} />
                 <span>{f.name}</span>
               </div>
@@ -163,8 +158,8 @@ export default function HomePage() {
       </section>
 
       {/* About + Gallery */}
-      <section className="wrap section" style={{ paddingTop: 0 }}>
-        <SectionHead
+      <section className="section bg-wash-mint">
+        <div className="wrap">        <SectionHead
           center
           eyebrow="About Us"
           title={<>Kharian&apos;s <em>trusted</em> name for celebrations</>}
@@ -186,6 +181,7 @@ export default function HomePage() {
             </Btn>
           </div>
         </Reveal>
+        </div>
       </section>
 
       {/* Reviews */}
@@ -219,7 +215,7 @@ export default function HomePage() {
           title={<>Book your date <em>today</em></>}
           lead="Wedding-season dates fill fast — send an inquiry and the details go straight to the venue's WhatsApp."
         />
-        <div className="grid grid-2" style={{ marginBottom: 24 }}>
+        <div className="grid contact-grid" style={{ marginBottom: 20 }}>
           <Reveal>
             <article className="card h-full">
               <div className="card-body">
@@ -262,7 +258,7 @@ export default function HomePage() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             src={MAPS_EMBED}
-            style={{ width: "100%", height: 380, borderRadius: 22, border: "1px solid rgba(198,161,91,.25)" }}
+            style={{ width: "100%", height: 300, borderRadius: 22, border: "1px solid rgba(198,161,91,.25)" }}
           />
         </Reveal>
       </section>
