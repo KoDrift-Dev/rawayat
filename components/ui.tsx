@@ -22,18 +22,18 @@ export function SectionHeading({
   return (
     <div className={center ? "text-center" : ""}>
       <Kicker>{kicker}</Kicker>
-      <h2 className="font-serif text-4xl leading-tight font-bold text-green sm:text-5xl">{title}</h2>
-      <div className="mt-4">
+      <h2 className="font-serif text-3xl leading-tight font-bold text-green sm:text-4xl lg:text-5xl">{title}</h2>
+      <div className="mt-3 sm:mt-4">
         <GoldRule center={center} />
       </div>
-      {lead ? <p className={`mt-4 max-w-2xl text-lg text-muted ${center ? "mx-auto" : ""}`}>{lead}</p> : null}
+      {lead ? <p className={`mt-3 max-w-2xl text-base text-muted sm:mt-4 sm:text-lg ${center ? "mx-auto" : ""}`}>{lead}</p> : null}
     </div>
   );
 }
 
 export function GreenButton({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a href={href} className="inline-block rounded-full bg-green px-5 py-3 text-center font-bold text-white hover:bg-green-dark">
+    <a href={href} className="inline-block rounded-full bg-green px-4 py-2.5 text-sm text-center font-bold text-white sm:px-5 sm:py-3 sm:text-base hover:bg-green-dark">
       {children}
     </a>
   );
@@ -41,7 +41,7 @@ export function GreenButton({ href, children }: { href: string; children: ReactN
 
 export function GoldButton({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a href={href} className="inline-block rounded-full bg-gold px-5 py-3 text-center font-bold text-[#1d1a12] hover:bg-gold-dark hover:text-white">
+    <a href={href} className="inline-block rounded-full bg-gold px-4 py-2.5 text-sm text-center font-bold text-[#1d1a12] sm:px-5 sm:py-3 sm:text-base hover:bg-gold-dark hover:text-white">
       {children}
     </a>
   );
@@ -51,7 +51,7 @@ export function OutlineButton({ href, children }: { href: string; children: Reac
   return (
     <a
       href={href}
-      className="inline-block rounded-full border border-green bg-transparent px-5 py-3 text-center font-bold text-green hover:bg-green hover:text-white"
+      className="inline-block rounded-full border border-green bg-transparent px-4 py-2.5 text-sm text-center font-bold text-green sm:px-5 sm:py-3 sm:text-base hover:bg-green hover:text-white"
     >
       {children}
     </a>
@@ -73,7 +73,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noreferrer"
       className={`inline-block rounded-full bg-[#1f9d55] text-center font-bold text-white hover:bg-[#178344] ${
-        small ? "px-4 py-2 text-sm" : "px-5 py-3"
+        small ? "px-4 py-2 text-sm" : "px-4 py-2.5 text-sm sm:px-5 sm:py-3 sm:text-base"
       }`}
     >
       {children}

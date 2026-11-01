@@ -29,33 +29,33 @@ export default function HallsPage() {
         </p>
       </Hero>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
-        <p className="max-w-2xl text-lg text-muted">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
+        <p className="max-w-2xl text-base text-muted sm:text-lg">
           Four spaces for weddings and family celebrations — Main Hall, Hall 2, Hall 3 and a Marquee. Confirm your
           date and guest count on WhatsApp or by telephone. Hall 3
           and Marquee photos are representative images for now, clearly marked below, and will be replaced with the
           venue&apos;s own photos when available.
         </p>
 
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           {HALLS.map((hall, i) => (
             <div
               key={hall.id}
               id={hall.id}
-              className="grid scroll-mt-28 items-center gap-8 border-b border-line py-9 last:border-b-0 md:grid-cols-2"
+              className="grid scroll-mt-28 items-center gap-5 border-b border-line py-6 last:border-b-0 sm:gap-8 sm:py-9 md:grid-cols-2"
             >
               <Image
                 src={hall.image}
                 alt={hall.alt}
                 width={900}
                 height={675}
-                className={`h-[360px] w-full rounded-2xl object-cover max-md:h-[260px] ${i % 2 === 1 ? "md:order-2" : ""}`}
+                className={`h-[360px] w-full rounded-2xl object-cover max-md:h-[200px] ${i % 2 === 1 ? "md:order-2" : ""}`}
               />
               <div>
                 <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">
                   Hall 0{i + 1}
                 </p>
-                <h2 className="font-serif text-4xl font-bold text-green">{hall.name}</h2>
+                <h2 className="font-serif text-3xl font-bold text-green sm:text-4xl">{hall.name}</h2>
                 <hr className="mt-4 h-[3px] w-16 border-0 bg-gold" />
                 <p className="mt-4 text-muted">{hall.blurb}</p>
                 <p className="mt-3 flex flex-wrap items-center gap-2">
@@ -87,7 +87,7 @@ export default function HallsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-16">
+      <section className="border-t border-line bg-cream py-10 sm:py-16">
         <div className="mx-auto max-w-6xl px-5">
           <div className="text-center">
             <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Inside the Venue</p>

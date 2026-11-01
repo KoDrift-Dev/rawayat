@@ -8,10 +8,11 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed right-5 bottom-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#1f9d55] text-2xl text-white shadow-[0_8px_24px_rgba(0,0,0,0.28)] hover:bg-[#178344] max-sm:right-3.5 max-sm:bottom-3.5 max-sm:h-[54px] max-sm:w-[54px]"
+      className="fixed right-4 bottom-4 z-50 grid h-12 w-12 place-items-center rounded-full bg-[#1f9d55] text-white shadow-[0_8px_24px_rgba(0,0,0,0.28)] hover:bg-[#178344] sm:right-5 sm:bottom-5 sm:h-14 sm:w-14"
     >
+      <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-[#1f9d55]/50" />
       <span className="sr-only">Chat on WhatsApp</span>
-      <WhatsAppIcon className="h-7 w-7" />
+      <WhatsAppIcon className="relative h-6 w-6 sm:h-7 sm:w-7" />
     </a>
   );
 }

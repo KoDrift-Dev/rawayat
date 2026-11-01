@@ -16,7 +16,7 @@ export default function Hero({
   center?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden rounded-b-[32px] bg-green-dark text-white">
+    <section className="relative overflow-hidden rounded-b-[20px] sm:rounded-b-[32px] bg-green-dark text-white">
       <Image
         src={coverPhoto}
         alt="Rawayat Marquee & Marriage Hall building at dusk"
@@ -30,9 +30,9 @@ export default function Hero({
           center ? "bg-black/60" : "bg-gradient-to-r from-black/90 via-black/65 to-black/30"
         }`}
       />
-      <div className={`relative mx-auto max-w-6xl px-5 ${center ? "text-center" : ""} ${tall ? "py-20 sm:py-24" : "py-14"}`}>
+      <div className={`relative mx-auto max-w-6xl px-5 ${center ? "text-center" : ""} ${tall ? "py-10 sm:py-24" : "py-8 sm:py-14"}`}>
         {kicker ? <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold uppercase">{kicker}</p> : null}
-        <h1 className="font-serif text-5xl leading-[1.1] font-bold text-white sm:text-6xl">{title}</h1>
+        <h1 className="font-serif text-4xl leading-[1.1] font-bold text-white sm:text-6xl">{title}</h1>
         {children}
       </div>
     </section>

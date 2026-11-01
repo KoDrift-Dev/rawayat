@@ -32,7 +32,7 @@ function Eyebrow({ children, center = false }: { children: string; center?: bool
 
 function SectionTitle({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
   return (
-    <h2 className={`font-serif text-4xl leading-tight font-bold text-green sm:text-5xl ${center ? "text-center" : ""}`}>
+    <h2 className={`font-serif text-3xl leading-tight font-bold text-green sm:text-4xl lg:text-5xl ${center ? "text-center" : ""}`}>
       {children}
     </h2>
   );
@@ -55,16 +55,16 @@ export default function HomePage() {
           </>
         }
       >
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[#e6dfc9]">
+        <p className="mx-auto mt-3 max-w-xl text-base text-[#e6dfc9] sm:text-lg">
           Where Kharian celebrates its biggest days — weddings, walimas and family gatherings with beautiful halls,
           delicious food and dedicated service.
         </p>
-        <p className="mt-5">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm backdrop-blur">
+        <p className="mt-4">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs backdrop-blur sm:px-4 sm:py-1.5 sm:text-sm">
             <span className="tracking-[0.12em] text-gold">★★★★★</span> 4.9 rating · 144 reviews
           </span>
         </p>
-        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <div className="mt-5 flex flex-col items-center gap-2.5 sm:mt-6 sm:flex-row sm:justify-center sm:gap-3">
           <GoldButton href={WA_DATE}>
             <span className="inline-flex items-center gap-2">
               <WhatsAppIcon className="h-5 w-5" />
@@ -73,14 +73,14 @@ export default function HomePage() {
           </GoldButton>
           <a
             href="/menu"
-            className="inline-block w-full max-w-xs rounded-full border-2 border-white bg-transparent px-5 py-3 text-center font-bold text-white hover:bg-white hover:text-green-dark sm:w-auto sm:max-w-none"
+            className="inline-block w-full max-w-xs rounded-full border-2 border-white bg-transparent px-4 py-2.5 text-center text-sm font-bold text-white hover:bg-white hover:text-green-dark sm:w-auto sm:max-w-none sm:px-5 sm:py-3 sm:text-base"
           >
             Explore Menus
           </a>
         </div>
       </Hero>
 
-      <section id="halls" className="mx-auto max-w-6xl scroll-mt-28 px-5 py-16">
+      <section id="halls" className="mx-auto max-w-6xl scroll-mt-28 px-5 py-10 sm:py-16">
         <Eyebrow center>Our Halls</Eyebrow>
         <SectionTitle center>
           One venue, <em className={EM}>four spaces</em>
@@ -88,26 +88,26 @@ export default function HomePage() {
         <p className="mx-auto mt-3 max-w-xl text-center text-muted">
           Four indoor spaces for every function — pick the hall that fits your guest list.
         </p>
-        <div className="mt-8 flex flex-col gap-5">
+        <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:gap-5">
           {HALLS.map((hall) => (
             <article key={hall.id} className="grid overflow-hidden rounded-3xl border border-line bg-white shadow-card md:mx-auto md:max-w-3xl md:grid-cols-5">
               <div className="relative md:col-span-2">
-                <Image src={hall.image} alt={hall.alt} width={900} height={675} className="h-60 w-full object-cover md:h-72" />
+                <Image src={hall.image} alt={hall.alt} width={900} height={675} className="h-44 w-full object-cover sm:h-60 md:h-72" />
                 {hall.badge ? (
                   <span className="absolute top-3 right-3 rounded-full bg-gold px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
                     {hall.badge}
                   </span>
                 ) : null}
               </div>
-              <div className="p-5 md:col-span-3 md:p-4">
+              <div className="p-4 sm:p-5 md:col-span-3 md:p-4">
                 <p className="flex flex-wrap gap-2">
                   <span className="rounded-full bg-green-soft px-3 py-1 text-xs font-bold text-green">
                     {hall.id === "marquee" ? "Marquee" : "Banquet Hall"}
                   </span>
                   <span className="rounded-full bg-[#f9efdb] px-3 py-1 text-xs font-bold text-gold-dark">Indoor</span>
                 </p>
-                <h3 className="mt-3 font-serif text-3xl font-bold text-green md:mt-2 md:text-2xl">{hall.name}</h3>
-                <p className="mt-2 text-muted">{hall.blurb}</p>
+                <h3 className="mt-2 font-serif text-2xl font-bold text-green sm:mt-3 sm:text-3xl md:mt-2 md:text-2xl">{hall.name}</h3>
+                <p className="mt-1.5 text-sm text-muted sm:mt-2 sm:text-base">{hall.blurb}</p>
                 <p className="mt-3 flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-green/30 px-3 py-1 text-sm font-bold text-green">
                     {hall.guests} guests
@@ -127,7 +127,7 @@ export default function HomePage() {
                     when supplied.
                   </p>
                 ) : null}
-                <p className="mt-4 flex flex-wrap gap-2.5">
+                <p className="mt-3 flex flex-wrap gap-2 sm:mt-4 sm:gap-2.5">
                   <WhatsAppButton href={hallWaLink(hall)}>Check Availability</WhatsAppButton>
                   <OutlineButton href="/gallery">See Photos</OutlineButton>
                 </p>
@@ -137,7 +137,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-cream py-16">
+      <section className="border-y border-line bg-cream py-10 sm:py-16">
         <div className="mx-auto max-w-6xl px-5">
           <SectionHeading
             center
@@ -145,7 +145,7 @@ export default function HomePage() {
             title="Three wedding menus"
             lead="Three wedding menus, plus extra dishes, for your celebration."
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-3">
             {MENUS.map((menu) => (
               <MenuCardPreview key={menu.id} menu={menu} />
             ))}
@@ -153,35 +153,35 @@ export default function HomePage() {
           <div className="mt-5">
             <ExtrasCard />
           </div>
-          <p className="mt-7 text-center">
+          <p className="mt-5 text-center sm:mt-7">
             <GreenButton href="/menu">View Complete Menu</GreenButton>
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <Eyebrow center>Every Function</Eyebrow>
         <SectionTitle center>
           Barat se Walima tak, <em className={EM}>sab yahin</em>
         </SectionTitle>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {FUNCTIONS.map((f) => (
-            <div key={f.name} className="rounded-2xl border border-line bg-white p-5 shadow-card">
-              <h3 className="font-serif text-xl font-bold text-green">{f.name}</h3>
+            <div key={f.name} className="rounded-2xl border border-line bg-white p-4 shadow-card sm:p-5">
+              <h3 className="font-serif text-lg font-bold text-green sm:text-xl">{f.name}</h3>
               <p className="mt-1 text-sm text-muted">{f.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="about" className="border-y border-line bg-cream py-16">
-        <div className="mx-auto grid max-w-6xl items-center gap-9 px-5 md:grid-cols-2">
+      <section id="about" className="border-y border-line bg-cream py-10 sm:py-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-6 px-5 sm:gap-9 md:grid-cols-2">
           <Image
             src={stagePhoto}
             alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall"
             width={960}
             height={1280}
-            className="h-[420px] w-full rounded-3xl object-cover"
+            className="h-64 w-full rounded-3xl object-cover sm:h-[420px]"
           />
           <div>
             <Eyebrow>About Us</Eyebrow>
@@ -204,7 +204,7 @@ export default function HomePage() {
                 ["03", "Trained Staff", "Hospitality the team is known for, at every event."],
                 ["04", "Prime Location", "Easy to reach in Kharian, with spacious parking."],
               ].map(([n, t, d]) => (
-                <div key={n} className="rounded-2xl bg-green-soft p-5">
+                <div key={n} className="rounded-2xl bg-green-soft p-4 sm:p-5">
                   <div className="font-serif text-2xl font-bold text-gold-dark">{n}</div>
                   <h3 className="mt-1 font-bold text-green">{t}</h3>
                   <p className="mt-1 text-sm text-muted">{d}</p>
@@ -215,12 +215,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <Eyebrow center>Gallery</Eyebrow>
         <SectionTitle center>
           A glimpse of <em className={EM}>Rawayat</em>
         </SectionTitle>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-5 lg:grid-cols-4">
           {[
             { src: stagePhoto, label: "Wedding Stage" },
             { src: mainHallPhoto, label: "Main Hall" },
@@ -228,17 +228,17 @@ export default function HomePage() {
             { src: interior1Photo, label: "Interiors" },
           ].map((g) => (
             <div key={g.label} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-              <Image src={g.src} alt={g.label} width={800} height={600} className="h-48 w-full object-cover" />
-              <p className="px-4 py-2.5 text-sm font-semibold text-green">{g.label}</p>
+              <Image src={g.src} alt={g.label} width={800} height={600} className="h-32 w-full object-cover sm:h-48" />
+              <p className="px-3 py-2 text-xs font-semibold text-green sm:px-4 sm:py-2.5 sm:text-sm">{g.label}</p>
             </div>
           ))}
         </div>
-        <p className="mt-7 text-center">
+        <p className="mt-5 text-center sm:mt-7">
           <GreenButton href="/gallery">View Full Gallery</GreenButton>
         </p>
       </section>
 
-      <section className="border-y border-line bg-cream py-16">
+      <section className="border-y border-line bg-cream py-10 sm:py-16">
         <div className="mx-auto max-w-6xl px-5">
           <Eyebrow center>Reviews</Eyebrow>
           <SectionTitle center>
@@ -247,8 +247,8 @@ export default function HomePage() {
           <p className="mt-3 text-center text-muted">
             <span className="tracking-[0.12em] text-gold">★★★★★</span> 4.9 rating · 144 reviews
           </p>
-          <div className="mx-auto mt-7 max-w-2xl rounded-2xl border border-line bg-white p-6 shadow-card">
-            <p className="text-lg text-muted italic">
+          <div className="mx-auto mt-5 max-w-2xl rounded-2xl border border-line bg-white p-4 shadow-card sm:mt-7 sm:p-6">
+            <p className="text-base text-muted italic sm:text-lg">
               “Staff are very friendly and nice. Great service. Food was amazing.”
             </p>
             <p className="mt-3 font-bold text-green">Guest review · directory listing</p>
@@ -256,7 +256,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-6xl scroll-mt-28 px-5 py-16">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-28 px-5 py-10 sm:py-16">
         <Eyebrow center>Contact Us</Eyebrow>
         <SectionTitle center>
           Book your date <em className={EM}>today</em>
@@ -264,8 +264,8 @@ export default function HomePage() {
         <p className="mx-auto mt-3 max-w-xl text-center text-muted">
           Wedding-season dates fill fast — send an inquiry and the details go straight to the venue&apos;s WhatsApp.
         </p>
-        <div className="mt-8 grid gap-5 lg:grid-cols-5">
-          <div className="rounded-3xl border border-line bg-white p-6 shadow-card lg:col-span-2">
+        <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 lg:grid-cols-5">
+          <div className="rounded-3xl border border-line bg-white p-4 shadow-card sm:p-6 lg:col-span-2">
             <h3 className="text-xl font-bold text-green">Venue Information</h3>
             <dl className="mt-4">
               <dt className="font-bold text-green">Address</dt>
@@ -280,7 +280,7 @@ export default function HomePage() {
               </dd>
             </dl>
             <p className="mt-5 flex flex-wrap gap-2.5">
-              <a href={PHONE_TEL} className="inline-block rounded-full bg-gold px-5 py-3 text-center font-bold text-[#1d1a12] hover:bg-gold-dark hover:text-white">
+              <a href={PHONE_TEL} className="inline-block rounded-full bg-gold px-4 py-2.5 text-center text-sm font-bold text-[#1d1a12] sm:px-5 sm:py-3 sm:text-base hover:bg-gold-dark hover:text-white">
                 Call Now
               </a>
               <WhatsAppButton href={WA_GENERAL}>WhatsApp</WhatsAppButton>
@@ -291,7 +291,7 @@ export default function HomePage() {
               </a>
             </p>
           </div>
-          <div className="rounded-3xl border border-line bg-white p-6 shadow-card lg:col-span-3">
+          <div className="rounded-3xl border border-line bg-white p-4 shadow-card sm:p-6 lg:col-span-3">
             <h3 className="text-xl font-bold text-green">Booking Inquiry</h3>
             <div className="mt-4">
               <InquiryForm />
@@ -299,7 +299,7 @@ export default function HomePage() {
           </div>
         </div>
         <iframe
-          className="mt-5 h-[380px] w-full rounded-3xl border border-line max-md:h-[300px]"
+          className="mt-4 h-[280px] w-full rounded-3xl border border-line sm:mt-5 sm:h-[380px]"
           title="Map — Rawayat Marquee & Marriage Hall, Kharian"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

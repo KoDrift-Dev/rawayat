@@ -49,11 +49,11 @@ export default function GalleryPage() {
         </p>
       </Hero>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {PHOTOS.map((g) => (
             <div key={g.label} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-              <Image src={g.src} alt={g.label} width={800} height={600} className="h-60 w-full object-cover" />
+              <Image src={g.src} alt={g.label} width={800} height={600} className="h-36 w-full object-cover sm:h-60" />
               <p className="px-4 py-2.5 text-sm font-semibold text-green">{g.label}</p>
             </div>
           ))}

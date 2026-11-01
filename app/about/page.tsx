@@ -18,10 +18,10 @@ export default function AboutPage() {
   return (
     <>
       <Hero center kicker="About Us" title={<>Rawayat Marquee &amp;<br />Marriage Hall</>}>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[#dfe8df]">A wedding venue in Kharian, Punjab, Pakistan.</p>
+        <p className="mx-auto mt-3 max-w-xl text-base text-[#dfe8df] sm:text-lg">A wedding venue in Kharian, Punjab, Pakistan.</p>
       </Hero>
 
-      <section className="mx-auto grid max-w-6xl items-center gap-9 px-5 py-16 md:grid-cols-2">
+      <section className="mx-auto grid max-w-6xl items-center gap-6 px-5 py-10 sm:gap-9 sm:py-16 md:grid-cols-2">
         <div>
           <SectionHeading
             kicker="About Us"
@@ -64,11 +64,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-16">
+      <section className="border-t border-line bg-cream py-10 sm:py-16">
         <div className="mx-auto max-w-6xl px-5">
           <div className="text-center">
             <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Inside the Venue</p>
-            <h2 className="font-serif text-4xl font-bold text-green">Interiors</h2>
+            <h2 className="font-serif text-3xl font-bold text-green sm:text-4xl">Interiors</h2>
             <hr className="mx-auto mt-4 h-[3px] w-16 border-0 bg-gold" />
           </div>
           <div className="mt-7 grid gap-5 sm:grid-cols-3">

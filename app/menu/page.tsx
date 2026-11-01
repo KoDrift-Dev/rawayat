@@ -20,30 +20,30 @@ export default function MenuPage() {
       </Hero>
 
       {/* One main heading that explains the menus, in Urdu first, then English. */}
-      <section className="mx-auto max-w-6xl px-5 pt-16 pb-2 text-center">
+      <section className="mx-auto max-w-6xl px-5 pt-10 pb-2 text-center sm:pt-16">
         <p className="mb-2 text-xs font-bold tracking-[0.18em] text-gold-dark uppercase">Our Menu</p>
-        <h2 dir="rtl" lang="ur" className="font-urdu text-4xl leading-[1.8] font-bold text-green sm:text-5xl">
+        <h2 dir="rtl" lang="ur" className="font-urdu text-3xl leading-[1.8] font-bold text-green sm:text-5xl">
           ہمارے ویڈنگ مینیو
         </h2>
-        <h3 className="mt-1 font-serif text-3xl font-bold text-green">Our Wedding Menus</h3>
+        <h3 className="mt-1 font-serif text-2xl font-bold text-green sm:text-3xl">Our Wedding Menus</h3>
         <hr className="mx-auto mt-5 h-[3px] w-16 border-0 bg-gold" />
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-12">
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-5 py-8 sm:py-12">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           {MENUS.map((menu) => (
             <MenuPackageCard key={menu.id} menu={menu} />
           ))}
         </div>
       </section>
 
-      <section className="border-t border-line bg-cream py-16">
+      <section className="border-t border-line bg-cream py-10 sm:py-16">
         <div className="mx-auto max-w-6xl px-5">
           {MENUS.map((menu) => (
             <MenuCatalogSection key={menu.id} menu={menu} />
           ))}
           <ExtrasCatalog />
-          <p className="mt-10 text-center">
+          <p className="mt-6 text-center sm:mt-10">
             <OutlineButton href={PHONE_TEL}>Call {PHONE_DISPLAY}</OutlineButton>
           </p>
         </div>
