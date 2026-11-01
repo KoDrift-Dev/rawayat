@@ -1,9 +1,11 @@
 import Hero from "@/components/Hero";
-import { Badge, Btn, Chip, Img, Reveal, SectionHead, StaggerItem } from "@/components/ui";
+import { Badge, Btn, Img, Reveal, SectionHead, StaggerItem } from "@/components/ui";
 import { ExtrasCard, MenuPreviewCard } from "@/components/MenuCard";
 import InquiryForm from "@/components/InquiryForm";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { interior1Photo } from "@/lib/photos/interior1";
+import { interior2Photo } from "@/lib/photos/interior2";
+import { coverPhoto } from "@/lib/photos/cover";
 import { stagePhoto } from "@/lib/photos/stage";
 import { mainHallPhoto } from "@/lib/photos/mainHall";
 import { hall2Photo } from "@/lib/photos/hall2";
@@ -20,6 +22,16 @@ import {
 } from "@/lib/site";
 import { MENUS } from "@/lib/menu-data";
 import { HALLS, hallWaLink } from "@/lib/halls";
+
+const FUNC_PHOTOS = [stagePhoto, mainHallPhoto, interior1Photo, interior2Photo, hall2Photo, coverPhoto];
+const GALLERY_THUMBS = [
+  { src: coverPhoto, alt: "Rawayat Marquee building at dusk" },
+  { src: stagePhoto, alt: "Decorated wedding stage" },
+  { src: mainHallPhoto, alt: "Main Hall" },
+  { src: hall2Photo, alt: "Hall 2" },
+  { src: interior1Photo, alt: "Chandelier corridor" },
+  { src: interior2Photo, alt: "Corridor lounge" },
+];
 
 export default function HomePage() {
   return (
@@ -40,14 +52,16 @@ export default function HomePage() {
               Check Date on WhatsApp
             </span>
           </Btn>
-          <Btn to="/menu" variant="outline-light">
+          <Btn to="/menu" variant="outline-light" className="ml-auto">
             Explore Menus
           </Btn>
         </div>
-        <span className="hero-badge">
-          <span style={{ letterSpacing: "0.12em", color: "var(--color-champagne-300)" }}>★★★★★</span>
-          4.9 rating · 144 reviews
-        </span>
+        <div style={{ textAlign: "center" }}>
+          <span className="hero-badge">
+            <span style={{ letterSpacing: "0.12em", color: "var(--color-champagne-300)" }}>★★★★★</span>
+            4.9 rating · 144 reviews
+          </span>
+        </div>
       </Hero>
 
       {/* Halls */}
@@ -136,71 +150,40 @@ export default function HomePage() {
           eyebrow="Every Function"
           title={<>Barat se Walima tak, <em>sab yahin</em></>}
         />
-        <Reveal>
-          <div className="chip-row" style={{ justifyContent: "center" }}>
-            {FUNCTIONS.map((f) => (
-              <Chip key={f.name}>{f.name}</Chip>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
-      {/* About */}
-      <section id="about" className="section bg-wash-mint">
-        <div className="wrap grid grid-2" style={{ alignItems: "center" }}>
-          <Reveal>
-            <article className="card">
-              <div className="card-img" style={{ aspectRatio: "3/4" }}>
-                <Img src={stagePhoto} alt="Decorated wedding stage at Rawayat Marquee & Marriage Hall" width={720} height={960} />
+        <div className="func-grid">
+          {FUNCTIONS.map((f, i) => (
+            <StaggerItem key={f.name} index={i}>
+              <div className="func-item">
+                <Img src={FUNC_PHOTOS[i % FUNC_PHOTOS.length]} alt={f.name} width={104} height={104} />
+                <span>{f.name}</span>
               </div>
-            </article>
-          </Reveal>
-          <Reveal delay={120}>
-            <div>
-              <span className="eyebrow">
-                <span className="rule" />
-                About Us
-              </span>
-              <h2 style={{ fontSize: "clamp(26px, 3.2vw, 36px)" }}>
-                Kharian&apos;s <em>trusted</em> name for celebrations
-              </h2>
-              <p className="lead">
-                Rawayat Marquee &amp; Marriage Hall is where Kharian families celebrate their most special days.
-                Spacious halls, beautiful decor, a trained team and food your guests will talk about long after the
-                event.
-              </p>
-              <ul className="why-list" style={{ marginBottom: 20 }}>
-                <li><strong>Clear Details</strong>&nbsp;— everything about your event is clear from day one.</li>
-                <li><strong>In-house Catering</strong>&nbsp;— the venue&apos;s own kitchen, fresh food served on time.</li>
-                <li><strong>Trained Staff</strong>&nbsp;— hospitality the team is known for, at every event.</li>
-                <li><strong>Prime Location</strong>&nbsp;— easy to reach in Kharian, with spacious parking.</li>
-              </ul>
-              <Btn to="/about" variant="outline">
-                More About Us
-              </Btn>
-            </div>
-          </Reveal>
+            </StaggerItem>
+          ))}
         </div>
       </section>
 
-      {/* Gallery preview */}
-      <section className="wrap section">
+      {/* About + Gallery */}
+      <section className="wrap section" style={{ paddingTop: 0 }}>
         <SectionHead
           center
-          eyebrow="Gallery"
-          title={<>A glimpse of <em>Rawayat</em></>}
-          action={
-            <Btn to="/gallery" variant="outline" size="sm">
-              View Full Gallery
-            </Btn>
-          }
+          eyebrow="About Us"
+          title={<>Kharian&apos;s <em>trusted</em> name for celebrations</>}
+          lead="Spacious indoor halls, beautiful decor, in-house catering and a trained team — Rawayat Marquee & Marriage Hall is where Kharian families celebrate their biggest days."
         />
         <Reveal>
-          <div className="gallery">
-            <Img src={stagePhoto} alt="Wedding Stage" width={800} height={600} className="main" />
-            <Img src={mainHallPhoto} alt="Main Hall" width={600} height={450} />
-            <Img src={hall2Photo} alt="Hall 2" width={600} height={450} />
-            <Img src={interior1Photo} alt="Interiors" width={600} height={450} />
+          <div className="g-row" style={{ marginBottom: 22 }}>
+            {GALLERY_THUMBS.map((g) => (
+              <div className="g-thumb" key={g.alt}>
+                <Img src={g.src} alt={g.alt} width={320} height={240} />
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal>
+          <div style={{ textAlign: "center" }}>
+            <Btn to="/gallery" variant="outline">
+              View All
+            </Btn>
           </div>
         </Reveal>
       </section>

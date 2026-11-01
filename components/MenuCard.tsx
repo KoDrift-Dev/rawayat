@@ -88,8 +88,8 @@ export function MenuPreviewCard({ menu, index = 0 }: { menu: Menu; index?: numbe
                   fontSize: 13.5,
                 }}
               >
-                <span title={line.en} className="truncate" style={{ minWidth: 0 }}>{line.en}</span>
-                <span dir="rtl" lang="ur" className="font-urdu" style={{ flexShrink: 0, textAlign: "right", fontSize: 14, color: "var(--color-ink-400)", lineHeight: 1.9 }}>
+                <span title={line.en} className="truncate" style={{ minWidth: 0, flex: "1 1 auto" }}>{line.en}</span>
+                <span dir="rtl" lang="ur" className="font-urdu" style={{ flex: "0 1 auto", minWidth: 0, textAlign: "right", fontSize: 14, color: "var(--color-ink-400)", lineHeight: 1.9 }}>
                   {line.ur}
                 </span>
               </li>
