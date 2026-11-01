@@ -2,31 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { EXTRA_DISHES, type Menu, type MenuLine } from "@/lib/site";
 
-/** Main heading of a menu card = its first item, e.g. "Mutton Qorma / Mutton Karahi". */
+/**
+ * Card heading: main heading = "Menu 1", sub heading = the first item
+ * (e.g. "Mutton Qorma / Mutton Karahi"), each styled per its type.
+ */
 function MainHeading({ menu, big = false }: { menu: Menu; big?: boolean }) {
   const first = menu.lines[0];
   return (
     <div>
-      <p className="mb-1 text-xs font-bold tracking-[0.22em] text-gold-dark uppercase">{menu.name}</p>
-      <h3 className={`font-serif font-bold text-green ${big ? "text-4xl" : "text-3xl"}`}>{first.en}</h3>
+      <h3 className={`font-serif font-bold text-green ${big ? "text-4xl" : "text-3xl"}`}>{menu.name}</h3>
+      <p className={`mt-1 font-semibold text-green ${big ? "text-2xl" : "text-xl"}`}>{first.en}</p>
       <p dir="rtl" lang="ur" className={`text-right font-urdu leading-9 text-gold-dark ${big ? "text-2xl" : "text-xl"}`}>
         {first.ur}
       </p>
     </div>
-  );
-}
-
-function DishRow({ line }: { line: MenuLine }) {
-  return (
-    <li className="flex items-center gap-3 border-b border-dashed border-line py-2.5 last:border-b-0">
-      <Image src={line.img} alt={line.en} width={160} height={160} className="h-12 w-12 shrink-0 rounded-xl object-cover" />
-      <div className="min-w-0">
-        <p className="truncate text-sm font-semibold text-green">{line.en}</p>
-        <p dir="rtl" lang="ur" className="text-right font-urdu text-base leading-7 text-muted">
-          {line.ur}
-        </p>
-      </div>
-    </li>
   );
 }
 
@@ -58,17 +47,25 @@ export function MenuCardFull({ menu }: { menu: Menu }) {
   );
 }
 
-/** Compact preview card for the home page — main heading + remaining items listed. */
+/** Showcase preview card for the home page — headings + plain item list, no photos. */
 export function MenuCardPreview({ menu }: { menu: Menu }) {
   return (
-    <article className="glass-card flex flex-col p-6 sm:p-7">
+    <article className="glass-card flex flex-col p-5 sm:p-6">
       <MainHeading menu={menu} />
-      <ul className="mt-4">
-        {menu.lines.slice(1).map((line) => (
-          <DishRow key={line.en} line={line} />
+      <ul className="mt-3">
+        {menu.lines.slice(1).map((line: MenuLine) => (
+          <li
+            key={line.en}
+            className="flex items-baseline justify-between gap-3 border-b border-dashed border-line py-2 last:border-b-0"
+          >
+            <span className="text-sm text-ink">{line.en}</span>
+            <span dir="rtl" lang="ur" className="shrink-0 text-right font-urdu text-lg leading-8 text-muted">
+              {line.ur}
+            </span>
+          </li>
         ))}
       </ul>
-      <p className="mt-auto pt-5">
+      <p className="mt-auto pt-4">
         <Link
           href={`/menu#${menu.id}`}
           className="inline-block rounded-full border border-green px-4 py-2 text-sm font-bold text-green hover:bg-green hover:text-white"
